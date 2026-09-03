@@ -1,0 +1,160 @@
+{
+  "credits": {
+    "author": "ISC Héctor Raúl Antonio Aranda Barroso",
+    "company": "Merasystems",
+    "licenseKey": "MERA-AURA-ENTERPRISE-2026-X89",
+    "licenseStatus": "VALIDATED_ACTIVE",
+    "licensedTo": "Merasystems Corp",
+    "issuedDate": "2026-09-02",
+    "version": "2.5.0 Enterprise Pro"
+  },
+  "settings": {
+    "storeName": "Aura SuperMart Enterprise Pro",
+    "businessName": "Aura Retail Systems S.A. de C.V.",
+    "taxId": "AUR240815XYZ",
+    "address": "Av. Tecnológico #1050, Corporativo Aura, CDMX",
+    "phone": "+52 (55) 8432-9000",
+    "email": "contacto@aurapos.enterprise.io",
+    "currency": "MXN",
+    "currencySymbol": "$",
+    "taxRate": 16,
+    "taxInclusive": false,
+    "ticketHeader": "¡BIENVENIDO A AURA SUPERMART!",
+    "ticketFooter": "¡Gracias por su compra! Conserve este ticket para cualquier cambio o aclaración dentro de 15 días.",
+    "showTaxBreakdown": true,
+    "ticketPaperWidth": "80mm",
+    "storageDestination": "gdrive",
+    "gdriveAccount": "Google Drive Corporativo (.env)",
+    "gdriveApiKey": "ya29.MERA_OAUTH_TOKEN_1788391048554",
+    "gdriveConfiguredViaEnv": true,
+    "dropboxAccount": "",
+    "dropboxApiKey": "",
+    "dropboxConfiguredViaEnv": false,
+    "gdriveConnected": true,
+    "dropboxConnected": false,
+    "enableMetrics": true,
+    "reportFrequency": "mensual",
+    "theme": "dark",
+    "autoPrint": false,
+    "author": "ISC Héctor Raúl Antonio Aranda Barroso",
+    "company": "Merasystems",
+    "licenseKey": "DEMO",
+    "licenseStatus": "DEMO_MODE",
+    "licensedTo": "Merasystems Corp",
+    "machineId": "MERA-MID-D393-62C5-6313-86ED",
+    "installedAt": "2026-09-02T13:30:16.960Z",
+    "trialExpiresAt": "2026-09-01T23:17:28.260Z",
+    "trialDaysTotal": 7,
+    "updatedBy": "ISC Héctor Raúl Aranda",
+    "storageMode": "hybrid"
+  },
+  "roles": [
+    {
+      "id": "role_admin",
+      "name": "Administrador",
+      "canDiscount": true,
+      "canCancel": true,
+      "canEditStock": true,
+      "canViewReports": true
+    },
+    {
+      "id": "role_cashier",
+      "name": "Cajero",
+      "canDiscount": true,
+      "canCancel": false,
+      "canEditStock": false,
+      "canViewReports": false
+    }
+  ],
+  "users": [
+    {
+      "id": "usr_admin",
+      "name": "Administrador General",
+      "username": "admin",
+      "role": "Administrador",
+      "pin": "1234",
+      "active": true,
+      "avatar": "AD"
+    }
+  ],
+  "products": [],
+  "sales": [
+    {
+      "id": "TKT-1001",
+      "ticketNumber": 1001,
+      "date": "2026-09-02T23:35:55.073Z",
+      "cashier": "Carlos Mendoza",
+      "cashierId": "usr_1",
+      "customer": "Público en General",
+      "paymentMethod": "Efectivo",
+      "terminalAuth": null,
+      "terminalTxn": null,
+      "items": [
+        {
+          "id": "prod_1",
+          "name": "Café Espresso",
+          "quantity": 1,
+          "salePrice": 89
+        }
+      ],
+      "subtotal": 0,
+      "taxAmount": 0,
+      "discount": 0,
+      "total": 89,
+      "amountPaid": 89,
+      "changeReturned": 0,
+      "status": "COMPLETED"
+    }
+  ],
+  "currentShift": {
+    "id": "shift_1788392155172",
+    "shiftNumber": 4,
+    "openedAt": "2026-09-02T23:35:55.172Z",
+    "cashier": "Administrador General",
+    "cashierId": "usr_admin",
+    "initialCash": 2450,
+    "status": "OPEN",
+    "movements": []
+  },
+  "shiftHistory": [
+    {
+      "id": "shift_1788392154831",
+      "shiftNumber": 3,
+      "openedAt": "2026-09-02T23:35:54.831Z",
+      "cashier": "Administrador General",
+      "cashierId": "usr_admin",
+      "initialCash": 3500,
+      "status": "CLOSED",
+      "movements": [],
+      "closedAt": "2026-09-02T23:35:55.161Z",
+      "countedCash": 2450,
+      "notes": "Cierre de turno con arqueo completo"
+    },
+    {
+      "id": "shift_1788392154731",
+      "shiftNumber": 2,
+      "openedAt": "2026-09-02T23:35:54.731Z",
+      "cashier": "Administrador General",
+      "cashierId": "usr_admin",
+      "initialCash": 4800,
+      "status": "CLOSED",
+      "movements": [],
+      "closedAt": "2026-09-02T23:35:54.827Z",
+      "countedCash": 3500,
+      "notes": "Cierre de turno vespertino con subida cloud API Key"
+    },
+    {
+      "id": "shift_1",
+      "shiftNumber": 1,
+      "openedAt": "2026-09-02T23:35:18.023Z",
+      "cashier": "Administrador General",
+      "cashierId": "usr_admin",
+      "initialCash": 0,
+      "status": "CLOSED",
+      "movements": [],
+      "closedAt": "2026-09-02T23:35:54.727Z",
+      "countedCash": 4800,
+      "notes": "Corte de turno con respaldo automático hacia Google Drive (.env)"
+    }
+  ]
+}

@@ -1,0 +1,2150 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark" data-bs-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aura POS Enterprise - Merasystems Core POS & Dashboard</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Bootstrap 5 & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <div class="app-container wrapper main-container" id="appContainer">
+    
+    <!-- ========================================== -->
+    <!-- SIDEBAR DE NAVEGACIÓN FIJO                 -->
+    <!-- ========================================== -->
+    <aside class="app-sidebar" id="appSidebar">
+      
+      <!-- Brand Logo -->
+      <div class="sidebar-brand">
+        <div class="brand-icon">
+          <i class="bi bi-cpu"></i>
+        </div>
+        <div class="brand-info">
+          <div class="d-flex align-items-center gap-2">
+            <h4>AURA POS</h4>
+          </div>
+          <span class="brand-badge">ENTERPRISE PRO</span>
+        </div>
+      </div>
+
+      <!-- Authorship & Company Pill -->
+      <div class="merasystems-credit-pill" title="Software desarrollado por ISC Héctor Raúl Antonio Aranda Barroso">
+        <div class="d-flex align-items-center gap-1">
+          <i class="bi bi-patch-check-fill text-cyan small"></i>
+          <span class="company-name">MERASYSTEMS</span>
+        </div>
+        <span class="author-tag font-mono">v2.5.0</span>
+      </div>
+
+      <!-- Navigation Menu -->
+      <ul class="sidebar-menu">
+        <li class="menu-category">Operación de Caja</li>
+        
+        <li class="nav-item">
+          <a class="nav-link-custom active" data-view="pos" id="nav-pos">
+            <i class="bi bi-cart4 text-primary"></i>
+            <span>Caja / Cobro</span>
+          </a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link-custom" data-view="sales" id="nav-sales">
+            <i class="bi bi-receipt text-success"></i>
+            <span>Ventas del Día</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link-custom" data-view="shifts" id="nav-shifts">
+            <i class="bi bi-cash-stack text-warning"></i>
+            <span>Turnos & Cortes</span>
+          </a>
+        </li>
+
+        <li class="menu-category">Gestión & Inventario</li>
+
+        <li class="nav-item">
+          <a class="nav-link-custom" data-view="inventory" id="nav-inventory">
+            <i class="bi bi-boxes text-info"></i>
+            <span>Inventario & Stock</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link-custom" data-view="catalog" id="nav-catalog">
+            <i class="bi bi-tags text-primary-emphasis"></i>
+            <span>Catálogo & Costes</span>
+          </a>
+        </li>
+
+        <li class="menu-category">Analítica & Sistema</li>
+
+        <li class="nav-item">
+          <a class="nav-link-custom" data-view="reports" id="nav-reports">
+            <i class="bi bi-graph-up-arrow text-danger"></i>
+            <span>Métricas & Reportes</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link-custom" data-view="settings" id="nav-settings">
+            <i class="bi bi-sliders text-secondary"></i>
+            <span>Centro de Configuración</span>
+          </a>
+        </li>
+
+        <li class="menu-category">Asistencia & Soporte</li>
+
+        <li class="nav-item">
+          <a class="nav-link-custom" data-view="help" id="nav-help">
+            <i class="bi bi-book-half text-cyan"></i>
+            <span>Ayuda & Manual IA</span>
+          </a>
+        </li>
+      </ul>
+
+      <!-- Theme Switcher & User Footer -->
+      <div class="sidebar-footer">
+        
+        <!-- Theme Toggle Bar -->
+        <div class="theme-switch-bar">
+          <span class="small text-muted d-flex align-items-center gap-1">
+            <i class="bi bi-palette"></i> Apariencia
+          </span>
+          <button class="theme-switch-btn" id="btnToggleTheme" title="Alternar Modo Claro / Oscuro">
+            <i class="bi bi-moon-stars-fill text-warning" id="themeIcon"></i>
+            <span id="themeLabelText">Oscuro</span>
+          </button>
+        </div>
+
+        <!-- Current User Card with Switch Button -->
+        <div class="user-card" id="sidebarUserCard">
+          <div class="d-flex align-items-center gap-2">
+            <div class="user-avatar" id="sidebarUserAvatar">CM</div>
+            <div class="user-info">
+              <span class="user-name" id="sidebarUserName">Carlos Mendoza</span>
+              <span class="user-role" id="sidebarUserRole">
+                <i class="bi bi-shield-check me-1"></i>Administrador
+              </span>
+            </div>
+          </div>
+          <button class="btn-switch-user" id="btnSwitchUser" title="Cambiar de Usuario / Cajero">
+            <i class="bi bi-arrow-left-right"></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ====================================================================== -->
+    <!-- MAIN APPLICATION CONTAINER                                             -->
+    <!-- ====================================================================== -->
+    <main class="app-main">
+      
+      <!-- Top Navbar Header -->
+      <header class="app-header">
+        <div class="header-left">
+          <div class="header-title-container">
+            <h2 id="headerViewTitle">Caja / Terminal de Cobro</h2>
+            <p id="headerViewSubtitle">Emisión rápida de tickets y escaneo de productos</p>
+          </div>
+        </div>
+
+        <div class="header-right">
+
+          <!-- Local Network LAN IP Badge (For Tablets & Network Printers) -->
+          <div class="badge-lan-ip d-none d-xl-flex align-items-center gap-2 px-3 py-1 rounded bg-dark border border-secondary border-opacity-50" id="badgeNetworkLanIp" title="Dirección IP de red local para tablets e impresoras (Clic para copiar)" style="cursor: pointer;">
+            <i class="bi bi-hdd-network text-info"></i>
+            <span class="font-mono small text-info fw-bold" id="textNetworkLanIp">LAN: 127.0.0.1:3000</span>
+            <i class="bi bi-copy text-muted small"></i>
+          </div>
+
+          <!-- Active Shift Indicator -->
+          <div class="badge-shift-live">
+            <span class="pulse-dot"></span>
+            <span id="headerShiftText">Turno #104 Activo</span>
+          </div>
+
+          <!-- Live Digital Clock -->
+          <div class="system-clock">
+            <i class="bi bi-clock-history text-muted"></i>
+            <span id="liveClock" class="font-mono fw-bold">--:--:--</span>
+          </div>
+
+          <!-- Hardware Cash Drawer Pulse Button -->
+          <button class="btn btn-outline-warning btn-sm fw-bold px-3 d-flex align-items-center gap-2" id="btnOpenCashDrawer" title="Apertura Física de Cajón de Dinero (ESC/POS 24V)">
+            <i class="bi bi-inbox-fill"></i>
+            <span class="d-none d-lg-inline">Abrir Cajón</span>
+          </button>
+
+          <!-- Stock Alert Notification -->
+          <button class="btn btn-outline-secondary position-relative px-3" id="btnNotificationCenter" title="Alertas de Inventario">
+            <i class="bi bi-bell"></i>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="notificationBadge">
+              3
+            </span>
+          </button>
+
+          <!-- Quick Cash Cut Action -->
+          <button class="btn btn-outline-warning btn-sm fw-bold px-3 d-none d-md-flex align-items-center gap-2" id="btnQuickCashCut">
+            <i class="bi bi-calculator"></i>
+            <span>Corte Rápido</span>
+          </button>
+
+          <!-- Fullscreen Toggle -->
+          <button class="btn btn-outline-secondary" id="btnToggleFullscreen" title="Pantalla Completa">
+            <i class="bi bi-fullscreen"></i>
+          </button>
+        </div>
+      </header>
+
+      <!-- Demo 7-Day Trial Countdown Notice Banner -->
+      <div class="trial-notice-banner d-none" id="trialNoticeBanner">
+        <div class="d-flex align-items-center gap-3 flex-wrap">
+          <span class="trial-pill-countdown" id="trialCountdownPill">
+            <i class="bi bi-hourglass-split"></i>
+            <span id="trialDaysText">7 Días Restantes</span>
+          </span>
+          <span class="small text-light" id="trialMessageText">
+            Modo de Evaluación Demo (Vigencia de 7 días). Adquiere tu licencia comercial con Merasystems para desbloquear permanentemente.
+          </span>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          <button class="btn btn-warning btn-sm fw-bold px-3 d-flex align-items-center gap-1 shadow-sm" id="btnBannerActivateLicense">
+            <i class="bi bi-key-fill"></i>
+            <span>Activar Licencia</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Views Container (SPA) -->
+      <div class="views-container main-content container-fluid" id="app-content">
+
+        <!-- ========================================== -->
+        <!-- VISTA 1: CAJA / COBRO (POS TERMINAL)       -->
+        <!-- ========================================== -->
+        <section class="view-section active" id="view-pos">
+          <div class="pos-layout">
+            
+            <!-- Left Side: Catalog & Search -->
+            <div class="catalog-panel">
+              
+              <!-- Dual Search Bar -->
+              <div class="search-container">
+                <div class="search-input-wrap">
+                  <i class="bi bi-upc-scan"></i>
+                  <input type="text" class="aura-input font-mono" id="posBarcodeInput" placeholder="Escanear Código de Barras o SKU (Presiona Enter)..." autofocus>
+                </div>
+                <div class="search-input-wrap">
+                  <i class="bi bi-search"></i>
+                  <input type="text" class="aura-input" id="posSearchInput" placeholder="Buscar por nombre...">
+                </div>
+              </div>
+
+              <!-- Categories Filter Bar -->
+              <div class="category-pills-bar" id="posCategoryPills">
+                <button class="cat-pill active" data-category="ALL">Todos los Productos</button>
+                <button class="cat-pill" data-category="Bebidas & Café">Bebidas & Café</button>
+                <button class="cat-pill" data-category="Panadería & Repostería">Panadería</button>
+                <button class="cat-pill" data-category="Lácteos & Huevos">Lácteos</button>
+                <button class="cat-pill" data-category="Snacks & Dulces">Snacks</button>
+                <button class="cat-pill" data-category="Frutas & Verduras">Frutas & Verduras</button>
+                <button class="cat-pill" data-category="Tecnología & Accesorios">Tecnología</button>
+                <button class="cat-pill" data-category="Cuidado Personal">Cuidado Personal</button>
+              </div>
+
+              <!-- Product Grid Cards -->
+              <div class="product-grid" id="posProductGrid">
+                <!-- Injected via JavaScript -->
+              </div>
+            </div>
+
+            <!-- Right Side: Cart & Checkout -->
+            <div class="cart-panel">
+              <div class="cart-header">
+                <div class="cart-title">
+                  <i class="bi bi-basket2-fill text-primary"></i>
+                  <span>Ticket Actual</span>
+                </div>
+                <span class="cart-items-count" id="cartBadgeCount">0 items</span>
+              </div>
+
+              <!-- Cart Table -->
+              <div class="cart-table-wrap" id="cartTableWrap">
+                <div class="cart-empty-state" id="cartEmptyState">
+                  <i class="bi bi-cart-x"></i>
+                  <p class="fw-bold mb-1">El carrito está vacío</p>
+                  <span class="small">Escanea un código de barras o haz clic en un producto para agregarlo</span>
+                </div>
+                
+                <div id="cartItemsList" class="d-none">
+                  <!-- Injected via JavaScript -->
+                </div>
+              </div>
+
+              <!-- Financial Summary Breakdown -->
+              <div class="cart-summary-box">
+                <div class="summary-line">
+                  <span>Subtotal Neto:</span>
+                  <span class="font-mono fw-bold" id="cartSubtotal">$0.00</span>
+                </div>
+                <div class="summary-line" id="cartTaxBreakdownRow">
+                  <span>IVA Trasladado (<span id="cartTaxRateLabel">16%</span>):</span>
+                  <span class="font-mono fw-bold" id="cartTaxAmount">$0.00</span>
+                </div>
+                <div class="summary-line text-warning d-none" id="cartDiscountRow">
+                  <span>Descuento Aplicado:</span>
+                  <span class="font-mono fw-bold" id="cartDiscountAmount">-$0.00</span>
+                </div>
+                <div class="summary-line total-line">
+                  <span>TOTAL A PAGAR:</span>
+                  <span class="font-mono total-amount" id="cartGrandTotal">$0.00</span>
+                </div>
+              </div>
+
+              <!-- Actions & Checkout -->
+              <div class="cart-actions">
+                <button class="btn-aura-secondary" id="btnClearCart" title="Vaciar Carrito (F4)">
+                  <i class="bi bi-trash3"></i>
+                  <span>Limpiar</span>
+                </button>
+                <button class="btn-aura-pay" id="btnOpenCheckout" disabled>
+                  <i class="bi bi-cash-coin fs-5"></i>
+                  <span>COBRAR (F2)</span>
+                </button>
+              </div>
+
+              <!-- POS Shortcuts Bar -->
+              <div class="pos-shortcuts-bar">
+                <span class="shortcut-chip"><kbd>F2</kbd> Cobrar</span>
+                <span class="shortcut-chip"><kbd>F4</kbd> Limpiar</span>
+                <span class="shortcut-chip"><kbd>F7</kbd> Descuento</span>
+                <span class="shortcut-chip"><kbd>F9</kbd> Corte</span>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- VISTA 2: VENTAS DEL DÍA (HISTORIAL)        -->
+        <!-- ========================================== -->
+        <section class="view-section" id="view-sales">
+          <!-- Summary KPI Tiles -->
+          <div class="row g-3 mb-4">
+            <div class="col-md-3">
+              <div class="kpi-card">
+                <div class="kpi-icon emerald"><i class="bi bi-cash-stack"></i></div>
+                <div class="kpi-info">
+                  <p>Ventas Brutas de Hoy</p>
+                  <h3 id="kpiTodaySalesTotal">$0.00</h3>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="kpi-card">
+                <div class="kpi-icon indigo"><i class="bi bi-receipt-cutoff"></i></div>
+                <div class="kpi-info">
+                  <p>Tickets Emitidos</p>
+                  <h3 id="kpiTodayTicketsCount">0</h3>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="kpi-card">
+                <div class="kpi-icon cyan"><i class="bi bi-pie-chart"></i></div>
+                <div class="kpi-info">
+                  <p>Ticket Promedio</p>
+                  <h3 id="kpiTodayAvgTicket">$0.00</h3>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="kpi-card">
+                <div class="kpi-icon amber"><i class="bi bi-graph-up"></i></div>
+                <div class="kpi-info">
+                  <p>Margen Bruto Estimado</p>
+                  <h3 id="kpiTodayEstimatedMargin">0.0%</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sales History Card -->
+          <div class="aura-card">
+            <div class="aura-card-header">
+              <h5 class="aura-card-title">
+                <i class="bi bi-clock-history text-primary"></i>
+                <span>Historial de Transacciones del Día</span>
+              </h5>
+              
+              <!-- Search & Filter Controls -->
+              <div class="d-flex gap-2 align-items-center">
+                <input type="text" class="aura-input form-control-sm" id="salesSearchInput" placeholder="Buscar ticket o cliente..." style="width: 240px;">
+                <select class="aura-input form-control-sm" id="salesPaymentFilter" style="width: 180px;">
+                  <option value="ALL">Todos los métodos</option>
+                  <option value="Efectivo">Efectivo</option>
+                  <option value="Terminal / Tarjeta">Tarjeta / Terminal</option>
+                  <option value="Transferencia SPEI">Transferencia SPEI</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Sales Table -->
+            <div class="aura-table-container">
+              <table class="aura-table">
+                <thead>
+                  <tr>
+                    <th>Folio / Ticket</th>
+                    <th>Hora</th>
+                    <th>Cajero</th>
+                    <th>Cliente</th>
+                    <th>Método de Pago</th>
+                    <th>Items</th>
+                    <th>Total</th>
+                    <th>Estado</th>
+                    <th class="text-end">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody id="salesTableBody">
+                  <!-- Injected via JavaScript -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- VISTA 3: MÉTRICAS & REPORTES EJECUTIVOS     -->
+        <!-- ========================================== -->
+        <section class="view-section" id="view-reports">
+          
+          <!-- Charts Section -->
+          <div class="row g-4 mb-4">
+            <div class="col-lg-8">
+              <div class="aura-card h-100">
+                <div class="aura-card-header">
+                  <h5 class="aura-card-title">
+                    <i class="bi bi-activity text-info"></i>
+                    <span>Comportamiento de Ventas (Evolución por Horas / Días)</span>
+                  </h5>
+                  <span class="badge bg-primary-subtle text-primary border border-primary-subtle font-mono">En tiempo real</span>
+                </div>
+                <div style="height: 280px; position: relative;">
+                  <canvas id="chartSalesTimeline"></canvas>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4">
+              <div class="aura-card h-100">
+                <div class="aura-card-header">
+                  <h5 class="aura-card-title">
+                    <i class="bi bi-pie-chart-fill text-warning"></i>
+                    <span>Distribución por Pago</span>
+                  </h5>
+                </div>
+                <div style="height: 280px; position: relative;">
+                  <canvas id="chartPaymentDistribution"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dynamic Executive Report Generator -->
+          <div class="aura-card">
+            <div class="aura-card-header">
+              <h5 class="aura-card-title">
+                <i class="bi bi-file-earmark-spreadsheet-fill text-success"></i>
+                <span>Generador Dinámico de Reportes Ejecutivos</span>
+              </h5>
+            </div>
+
+            <div class="row g-3 align-items-end mb-3">
+              <div class="col-md-3">
+                <label class="form-label small text-muted">Período de Análisis</label>
+                <select class="aura-input" id="reportPeriodSelect">
+                  <option value="diario">Corte de Hoy (Diario)</option>
+                  <option value="semanal">Últimos 7 Días (Semanal)</option>
+                  <option value="mensual" selected>Mes en Curso (Mensual)</option>
+                </select>
+              </div>
+
+              <div class="col-md-3">
+                <label class="form-label small text-muted">Tipo de Reporte</label>
+                <select class="aura-input" id="reportTypeSelect">
+                  <option value="SALES_SUMMARY">Resumen de Ventas e Impuestos</option>
+                  <option value="PRODUCTS_PROFIT">Utilidad y Margen por Producto</option>
+                  <option value="INVENTORY_VALUATION">Valorización de Inventario Físico</option>
+                  <option value="CASHIER_PERFORMANCE">Rendimiento y Arqueo por Cajero</option>
+                </select>
+              </div>
+
+              <div class="col-md-3">
+                <label class="form-label small text-muted">Formato de Descarga</label>
+                <select class="aura-input" id="reportFormatSelect">
+                  <option value="CSV">Excel / Archivo CSV (.csv)</option>
+                  <option value="XML">Formato XML Estructurado (.xml)</option>
+                  <option value="PDF">Informe Ejecutivo Imprimible / PDF</option>
+                </select>
+              </div>
+
+              <div class="col-md-3">
+                <button class="btn btn-primary w-100 fw-bold py-2 d-flex align-items-center justify-content-center gap-2" id="btnGenerateReport">
+                  <i class="bi bi-file-earmark-arrow-down-fill"></i>
+                  <span>Generar & Exportar</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Report Live Preview Table -->
+            <div class="aura-table-container mt-3">
+              <table class="aura-table">
+                <thead id="reportPreviewHead">
+                  <tr>
+                    <th>Concepto / Identificador</th>
+                    <th>Unidades</th>
+                    <th>Costo Total</th>
+                    <th>Venta Total</th>
+                    <th>IVA</th>
+                    <th>Utilidad Neta</th>
+                    <th>Margen %</th>
+                  </tr>
+                </thead>
+                <tbody id="reportPreviewBody">
+                  <!-- Injected via JavaScript -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- VISTA 4: CATÁLOGO & COSTES (PRODUCTOS)     -->
+        <!-- ========================================== -->
+        <section class="view-section" id="view-catalog">
+          <div class="aura-card">
+            <div class="aura-card-header">
+              <h5 class="aura-card-title">
+                <i class="bi bi-box-seam-fill text-primary"></i>
+                <span>Catálogo General de Productos, Costos y Precios</span>
+              </h5>
+              
+              <!-- Toolbar with Export / Import -->
+              <div class="d-flex flex-wrap gap-2 align-items-center">
+                <input type="text" class="aura-input form-control-sm" id="catalogSearchInput" placeholder="Buscar por código, SKU o nombre..." style="width: 220px;">
+                
+                <div class="btn-group btn-group-sm">
+                  <button class="btn btn-outline-success fw-bold" id="btnExportCatalogCsv" title="Exportar a Excel / CSV">
+                    <i class="bi bi-filetype-csv me-1"></i>CSV
+                  </button>
+                  <button class="btn btn-outline-info fw-bold" id="btnExportCatalogXml" title="Exportar a XML">
+                    <i class="bi bi-filetype-xml me-1"></i>XML
+                  </button>
+                </div>
+
+                <button class="btn btn-outline-warning btn-sm fw-bold" id="btnOpenImportCatalogModal" title="Importar Masivamente Catálogo">
+                  <i class="bi bi-upload me-1"></i>Importar
+                </button>
+
+                <button class="btn btn-primary btn-sm fw-bold px-3 d-flex align-items-center gap-2" id="btnOpenAddProduct">
+                  <i class="bi bi-plus-circle-fill"></i>
+                  <span>Nuevo Producto</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Products Table -->
+            <div class="aura-table-container">
+              <table class="aura-table">
+                <thead>
+                  <tr>
+                    <th>Código / SKU</th>
+                    <th>Producto</th>
+                    <th>Categoría</th>
+                    <th>Costo</th>
+                    <th>Precio Venta</th>
+                    <th>IVA</th>
+                    <th>Stock</th>
+                    <th>Utilidad ($)</th>
+                    <th>Margen (%)</th>
+                    <th class="text-end">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody id="catalogTableBody">
+                  <!-- Injected via JavaScript -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- VISTA 5: INVENTARIO, STOCK & IA COPILOT    -->
+        <!-- ========================================== -->
+        <section class="view-section" id="view-inventory">
+          
+          <!-- AI Assistant Copilot Banner -->
+          <div class="ai-copilot-card mb-4">
+            <div class="ai-header">
+              <div class="d-flex align-items-center gap-2">
+                <span class="ai-badge">
+                  <i class="bi bi-stars"></i> AURA AI COPILOT
+                </span>
+                <span class="text-muted small">Asistente Predictivo de Existencias y Reabastecimiento - Merasystems Core</span>
+              </div>
+              <button class="btn btn-sm btn-outline-light" id="btnRefreshAiInsights">
+                <i class="bi bi-arrow-clockwise me-1"></i>Analizar Ahora
+              </button>
+            </div>
+
+            <div class="row g-3" id="aiInsightsContainer">
+              <!-- AI insights injected via JavaScript -->
+            </div>
+          </div>
+
+          <!-- Inventory Stats Tiles -->
+          <div class="row g-3 mb-4">
+            <div class="col-md-3">
+              <div class="kpi-card">
+                <div class="kpi-icon indigo"><i class="bi bi-boxes"></i></div>
+                <div class="kpi-info">
+                  <p>Total de SKUs</p>
+                  <h3 id="invTotalSkus">0</h3>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="kpi-card">
+                <div class="kpi-icon emerald"><i class="bi bi-cash"></i></div>
+                <div class="kpi-info">
+                  <p>Valorización al Costo</p>
+                  <h3 id="invTotalCostValue">$0.00</h3>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="kpi-card">
+                <div class="kpi-icon cyan"><i class="bi bi-tag-fill"></i></div>
+                <div class="kpi-info">
+                  <p>Valor Potencial Venta</p>
+                  <h3 id="invTotalSaleValue">$0.00</h3>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="kpi-card">
+                <div class="kpi-icon rose"><i class="bi bi-exclamation-diamond-fill"></i></div>
+                <div class="kpi-info">
+                  <p>Productos con Stock Bajo</p>
+                  <h3 id="invLowStockCount">0</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Inventory Management Table -->
+          <div class="aura-card">
+            <div class="aura-card-header">
+              <h5 class="aura-card-title">
+                <i class="bi bi-clipboard2-data-fill text-info"></i>
+                <span>Control de Existencias & Ajustes Físicos</span>
+              </h5>
+              
+              <div class="d-flex flex-wrap gap-2 align-items-center">
+                <select class="aura-input form-control-sm" id="invFilterStockStatus" style="width: 180px;">
+                  <option value="ALL">Todas las existencias</option>
+                  <option value="LOW">Sólo Stock Bajo / Crítico</option>
+                  <option value="OUT">Sólo Agotados (0)</option>
+                  <option value="OK">Stock Óptimo</option>
+                </select>
+
+                <div class="btn-group btn-group-sm">
+                  <button class="btn btn-outline-success fw-bold" id="btnExportInventoryCsv" title="Exportar Existencias CSV">
+                    <i class="bi bi-filetype-csv me-1"></i>CSV
+                  </button>
+                  <button class="btn btn-outline-info fw-bold" id="btnExportInventoryXml" title="Exportar Existencias XML">
+                    <i class="bi bi-filetype-xml me-1"></i>XML
+                  </button>
+                </div>
+
+                <button class="btn btn-outline-warning btn-sm fw-bold" id="btnOpenImportInventoryModal" title="Importar Inventario">
+                  <i class="bi bi-upload me-1"></i>Importar
+                </button>
+              </div>
+            </div>
+
+            <div class="aura-table-container">
+              <table class="aura-table">
+                <thead>
+                  <tr>
+                    <th>Código</th>
+                    <th>Producto</th>
+                    <th>Stock Actual</th>
+                    <th>Mínimo Permitido</th>
+                    <th>Estado de Alerta</th>
+                    <th>Valor en Bodega</th>
+                    <th class="text-end">Ajustar Existencia</th>
+                  </tr>
+                </thead>
+                <tbody id="inventoryTableBody">
+                  <!-- Injected via JavaScript -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- VISTA 6: TURNOS Y CORTES DE CAJA (CORTE Z) -->
+        <!-- ========================================== -->
+        <section class="view-section" id="view-shifts">
+          <div class="row g-4">
+            
+            <!-- Current Shift Balance Card -->
+            <div class="col-lg-7">
+              <div class="aura-card">
+                <div class="aura-card-header">
+                  <h5 class="aura-card-title">
+                    <i class="bi bi-safe2-fill text-warning"></i>
+                    <span>Estado del Turno Actual (#<span id="shiftCurrentNum">104</span>)</span>
+                  </h5>
+                  <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-1 fw-bold">TURNO ABIERTO</span>
+                </div>
+
+                <div class="row g-3 mb-3">
+                  <div class="col-6">
+                    <span class="text-muted small">Cajero Responsable:</span>
+                    <h6 class="fw-bold text-white mb-0" id="shiftCashierName">Carlos Mendoza</h6>
+                  </div>
+                  <div class="col-6 text-end">
+                    <span class="text-muted small">Hora de Apertura:</span>
+                    <h6 class="fw-bold text-white font-mono mb-0" id="shiftOpenTime">--:--</h6>
+                  </div>
+                </div>
+
+                <!-- Shift Financial Breakdown -->
+                <div class="p-3 rounded-3 bg-dark border border-secondary border-opacity-25 mb-3">
+                  <div class="d-flex justify-content-between mb-2">
+                    <span class="text-muted">Fondo Inicial de Caja:</span>
+                    <span class="font-mono fw-bold text-white" id="shiftInitialCash">$0.00</span>
+                  </div>
+                  <div class="d-flex justify-content-between mb-2">
+                    <span class="text-muted">(+) Ventas en Efectivo:</span>
+                    <span class="font-mono fw-bold text-success" id="shiftCashSales">$0.00</span>
+                  </div>
+                  <div class="d-flex justify-content-between mb-2">
+                    <span class="text-muted">(+) Entradas Manuales de Efectivo:</span>
+                    <span class="font-mono fw-bold text-info" id="shiftCashIns">$0.00</span>
+                  </div>
+                  <div class="d-flex justify-content-between mb-2">
+                    <span class="text-muted">(-) Retiros / Salidas de Caja:</span>
+                    <span class="font-mono fw-bold text-danger" id="shiftCashOuts">-$0.00</span>
+                  </div>
+                  <hr class="border-secondary my-2">
+                  <div class="d-flex justify-content-between fs-5 fw-bold">
+                    <span>Efectivo Esperado en Cajón:</span>
+                    <span class="font-mono text-warning" id="shiftExpectedCash">$0.00</span>
+                  </div>
+                </div>
+
+                <!-- Secondary Payment Summary -->
+                <div class="row g-2 mb-4">
+                  <div class="col-6">
+                    <div class="p-2 rounded bg-dark border border-secondary border-opacity-10">
+                      <span class="small text-muted d-block">Ventas con Tarjeta / Terminal</span>
+                      <strong class="font-mono text-cyan" id="shiftCardSales">$0.00</strong>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="p-2 rounded bg-dark border border-secondary border-opacity-10">
+                      <span class="small text-muted d-block">Ventas por Transferencia SPEI</span>
+                      <strong class="font-mono text-purple" id="shiftTransferSales">$0.00</strong>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Shift Actions -->
+                <div class="d-flex gap-2">
+                  <button class="btn btn-outline-info flex-grow-1 fw-bold" id="btnOpenCashMovement">
+                    <i class="bi bi-arrow-left-right me-1"></i>Entrada / Salida de Efectivo
+                  </button>
+                  <button class="btn btn-warning flex-grow-1 fw-bold text-dark" id="btnOpenCloseShiftModal">
+                    <i class="bi bi-lock-fill me-1"></i>Realizar Corte de Caja (Cierre Z)
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Shift Cash Movements Log -->
+            <div class="col-lg-5">
+              <div class="aura-card h-100">
+                <div class="aura-card-header">
+                  <h5 class="aura-card-title">
+                    <i class="bi bi-journal-text text-secondary"></i>
+                    <span>Movimientos del Turno</span>
+                  </h5>
+                </div>
+
+                <div class="aura-table-container" style="max-height: 380px;">
+                  <table class="aura-table">
+                    <thead>
+                      <tr>
+                        <th>Tipo</th>
+                        <th>Monto</th>
+                        <th>Motivo / Justificación</th>
+                        <th>Hora</th>
+                      </tr>
+                    </thead>
+                    <tbody id="shiftMovementsBody">
+                      <!-- Injected via JavaScript -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- VISTA 7: CENTRO DE CONFIGURACIÓN           -->
+        <!-- ========================================== -->
+        <section class="view-section" id="view-settings">
+          <div class="row g-4">
+            
+            <!-- Authorship & Merasystems License -->
+            <div class="col-12">
+              <div class="license-hero-card">
+                <div class="row align-items-center g-3">
+                  <div class="col-lg-6">
+                    <div class="d-flex align-items-center gap-2 mb-1 flex-wrap">
+                      <span class="badge bg-success px-3 py-1 font-mono" id="licenseStatusBadge">
+                        <i class="bi bi-patch-check-fill me-1"></i>LICENCIA CORPORATIVA VERIFICADA
+                      </span>
+                      <span class="text-cyan small fw-bold">MERASYSTEMS ENTERPRISE</span>
+                      <span class="badge bg-warning-subtle text-warning border border-warning-subtle font-mono d-none" id="licenseTrialBadge">
+                        <i class="bi bi-hourglass-split me-1"></i>MODO PRUEBA 7 DÍAS
+                      </span>
+                    </div>
+                    <h4 class="fw-bold text-white mb-1">Aura POS Enterprise Edition (v2.5.0)</h4>
+                    <p class="text-muted small mb-2">
+                      Software desarrollado y firmado por <strong>ISC Héctor Raúl Antonio Aranda Barroso</strong> para <strong>Merasystems Corp</strong>.
+                    </p>
+
+                    <!-- Machine ID Hardware Identifier Display Box -->
+                    <div class="machine-id-box mb-0">
+                      <div>
+                        <span class="text-muted small d-block" style="font-size: 0.72rem;">ID DE EQUIPO (MACHINE ID):</span>
+                        <span class="machine-id-text" id="displaySettingsMachineId">MERA-MID-84F2-9901-BA33-412C</span>
+                      </div>
+                      <button type="button" class="btn btn-outline-cyan btn-sm py-1 px-3 d-flex align-items-center gap-1" id="btnCopySettingsMachineId" title="Copiar Machine ID para solicitar licencia">
+                        <i class="bi bi-copy"></i>
+                        <span class="small">Copiar ID</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-6 text-lg-end">
+                    <label class="form-label small text-muted d-block text-lg-end mb-1">Clave de Activación Comercial / Licencia:</label>
+                    <div class="input-group mb-2">
+                      <input type="text" class="aura-input font-mono form-control-sm text-center" id="cfgLicenseInput" value="MERA-AURA-ENTERPRISE-2026-X89" placeholder="MERA-XXXX o DEMO">
+                      <button class="btn btn-outline-success btn-sm fw-bold px-3" id="btnValidateLicense" title="Validar clave comercial MERA-">
+                        <i class="bi bi-shield-check me-1"></i>Activar Clave
+                      </button>
+                      <button class="btn btn-outline-warning btn-sm fw-bold px-3" id="btnActivateDemoMode" title="Habilitar Modo Demo (7 días)">
+                        <i class="bi bi-play-circle me-1"></i>DEMO
+                      </button>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-lg-end gap-2 flex-wrap">
+                      <span class="small text-success font-mono" id="licenseStatusLabel">● Software Activo y Autorizado (Merasystems)</span>
+                      <span class="small text-muted font-mono" id="licenseExpiresLabel"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Modular System Options & Frequency Automation -->
+            <div class="col-12">
+              <div class="aura-card">
+                <div class="aura-card-header">
+                  <h5 class="aura-card-title">
+                    <i class="bi bi-toggles text-indigo"></i>
+                    <span>Modularidad de Sistema & Automatización de Reportes</span>
+                  </h5>
+                  <span class="badge bg-primary-subtle text-primary border border-primary-subtle font-mono">Personalización Dinámica</span>
+                </div>
+
+                <div class="row g-3">
+                  <!-- Metrics Module Switch -->
+                  <div class="col-md-6">
+                    <div class="p-3 rounded bg-dark border border-secondary border-opacity-25 h-100 d-flex align-items-center justify-content-between">
+                      <div>
+                        <h6 class="fw-bold text-white mb-1 d-flex align-items-center gap-2">
+                          <i class="bi bi-graph-up-arrow text-danger"></i>
+                          <span>Habilitar Módulo de Métricas y Utilidad</span>
+                        </h6>
+                        <p class="small text-muted mb-0">
+                          Al desactivar, la opción <strong>"Métricas & Reportes"</strong> se ocultará automáticamente de la barra lateral.
+                        </p>
+                      </div>
+                      <div class="form-check form-switch fs-4 ms-3">
+                        <input class="form-check-input" type="checkbox" id="cfgEnableMetrics" checked>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Frequency Selector -->
+                  <div class="col-md-6">
+                    <div class="p-3 rounded bg-dark border border-secondary border-opacity-25 h-100">
+                      <label class="form-label small text-muted fw-bold d-flex align-items-center gap-2 mb-1">
+                        <i class="bi bi-clock-history text-warning"></i>
+                        <span>Frecuencia de Sincronización & Respaldos Automáticos</span>
+                      </label>
+                      <select class="aura-input font-mono" id="cfgReportFrequency">
+                        <option value="diario">Diario (Al cierre de cada turno / corte Z)</option>
+                        <option value="semanal">Semanal (Consolidado cada 7 días)</option>
+                        <option value="mensual" selected>Mensual (Corte de mes completo)</option>
+                      </select>
+                      <span class="small text-subtle d-block mt-1">Determina la periodicidad y subcarpeta predeterminada en disco y nube.</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Multidestination Cloud Storage Settings -->
+            <div class="col-12">
+              <div class="aura-card">
+                <div class="aura-card-header">
+                  <h5 class="aura-card-title">
+                    <i class="bi bi-cloud-arrow-up-fill text-cyan"></i>
+                    <span>Multidestino de Almacenamiento & Respaldos en Nube</span>
+                  </h5>
+                  <button class="btn btn-outline-info btn-sm fw-bold" id="btnSyncNowCloud">
+                    <i class="bi bi-arrow-repeat me-1"></i>Sincronizar Todo Ahora
+                  </button>
+                </div>
+
+                <div class="row g-3 mb-3">
+                  <!-- Option 1: Local -->
+                  <div class="col-md-4">
+                    <div class="storage-destination-card active" data-dest="local" id="cardDestLocal">
+                      <div class="d-flex align-items-center justify-content-between mb-2">
+                        <div class="d-flex align-items-center gap-2">
+                          <i class="bi bi-hdd-fill text-warning fs-4"></i>
+                          <h6 class="fw-bold text-white mb-0">Almacenamiento Local</h6>
+                        </div>
+                        <i class="bi bi-check-circle-fill text-success dest-check-icon"></i>
+                      </div>
+                      <p class="small text-muted mb-1">Descarga directa en el explorador de archivos.</p>
+                      <span class="badge bg-dark text-muted small font-mono">📁 /AuraPOS_Respaldo/</span>
+                    </div>
+                  </div>
+
+                  <!-- Option 2: Google Drive -->
+                  <div class="col-md-4">
+                    <div class="storage-destination-card" data-dest="gdrive" id="cardDestGdrive">
+                      <div class="d-flex align-items-center justify-content-between mb-2">
+                        <div class="d-flex align-items-center gap-2">
+                          <i class="bi bi-google text-primary fs-4"></i>
+                          <h6 class="fw-bold text-white mb-0">Google Drive</h6>
+                        </div>
+                        <i class="bi bi-check-circle-fill text-success dest-check-icon d-none"></i>
+                      </div>
+                      <p class="small text-muted mb-1">Estructura física y sincronización con API Key oficial.</p>
+                      <div class="d-flex align-items-center justify-content-between flex-wrap gap-1 mb-1">
+                        <span class="badge bg-success-subtle text-success small font-mono text-truncate" style="max-width: 170px;" id="labelGdriveAccount">No vinculado</span>
+                        <span class="badge bg-secondary font-mono" style="font-size: 9px;" id="badgeGdriveStatus">Inactivo</span>
+                      </div>
+                      <div class="small text-muted font-mono mb-2 text-truncate" style="font-size: 10px;" id="badgeGdriveApiKey">
+                        🔑 API Key: <span class="text-cyan">No configurada</span>
+                      </div>
+                      <div class="d-flex align-items-center gap-1">
+                        <button type="button" class="btn btn-xs btn-outline-primary flex-grow-1 py-1 px-1 btn-connect-cloud" data-provider="drive" title="Ingresar o actualizar API Key">
+                          <i class="bi bi-key-fill"></i> <span id="textBtnGdriveConnect">API Key</span>
+                        </button>
+                        <button type="button" class="btn btn-xs btn-outline-info py-1 px-2 btn-test-cloud" data-provider="drive" title="Probar conexión con API Key">
+                          <i class="bi bi-broadcast"></i> Probar
+                        </button>
+                        <button type="button" class="btn btn-xs btn-outline-danger py-1 px-2 btn-disconnect-cloud d-none" id="btnDisconnectGdrive" data-provider="drive" title="Desvincular cuenta y limpiar tokens de config.json">
+                          <i class="bi bi-x-circle"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Option 3: Dropbox -->
+                  <div class="col-md-4">
+                    <div class="storage-destination-card" data-dest="dropbox" id="cardDestDropbox">
+                      <div class="d-flex align-items-center justify-content-between mb-2">
+                        <div class="d-flex align-items-center gap-2">
+                          <i class="bi bi-dropbox text-info fs-4"></i>
+                          <h6 class="fw-bold text-white mb-0">Dropbox Business</h6>
+                        </div>
+                        <i class="bi bi-check-circle-fill text-success dest-check-icon d-none"></i>
+                      </div>
+                      <p class="small text-muted mb-1">Almacenamiento corporativo mediante Access Token / API Key.</p>
+                      <div class="d-flex align-items-center justify-content-between flex-wrap gap-1 mb-1">
+                        <span class="badge bg-info-subtle text-info small font-mono text-truncate" style="max-width: 170px;" id="labelDropboxAccount">No vinculado</span>
+                        <span class="badge bg-secondary font-mono" style="font-size: 9px;" id="badgeDropboxStatus">Inactivo</span>
+                      </div>
+                      <div class="small text-muted font-mono mb-2 text-truncate" style="font-size: 10px;" id="badgeDropboxApiKey">
+                        🔑 API Key: <span class="text-cyan">No configurada</span>
+                      </div>
+                      <div class="d-flex align-items-center gap-1">
+                        <button type="button" class="btn btn-xs btn-outline-info flex-grow-1 py-1 px-1 btn-connect-cloud" data-provider="dropbox" title="Ingresar o actualizar API Key">
+                          <i class="bi bi-key-fill"></i> <span id="textBtnDropboxConnect">API Key</span>
+                        </button>
+                        <button type="button" class="btn btn-xs btn-outline-info py-1 px-2 btn-test-cloud" data-provider="dropbox" title="Probar conexión con API Key">
+                          <i class="bi bi-broadcast"></i> Probar
+                        </button>
+                        <button type="button" class="btn btn-xs btn-outline-danger py-1 px-2 btn-disconnect-cloud d-none" id="btnDisconnectDropbox" data-provider="dropbox" title="Desvincular cuenta y limpiar tokens de config.json">
+                          <i class="bi bi-x-circle"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Physical Folders Indicator -->
+                <div class="p-3 rounded bg-dark border border-secondary border-opacity-25 d-flex flex-wrap align-items-center justify-content-between gap-3">
+                  <div>
+                    <span class="small text-muted d-block">Estructura de Carpetas Físicas en Servidor / Equipo:</span>
+                    <strong class="font-mono text-white small" id="cloudFoldersPathDisplay">
+                      📁 /CloudSync_DRIVE/AuraPOS_Respaldo/ &nbsp;|&nbsp; 📁 /CloudSync_DROPBOX/AuraPOS_Respaldo/ [ 📂 diario | 📂 semanal | 📂 mensual ]
+                    </strong>
+                  </div>
+                  <div class="d-flex gap-2">
+                    <button class="btn btn-outline-light btn-sm" id="btnExportBackup">
+                      <i class="bi bi-download me-1"></i>Descargar Respaldo JSON
+                    </button>
+                    <label class="btn btn-outline-primary btn-sm mb-0">
+                      <i class="bi bi-upload me-1"></i>Restaurar Respaldo
+                      <input type="file" id="inputRestoreBackup" accept=".json" class="d-none">
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Store Profile -->
+            <div class="col-lg-6">
+              <div class="aura-card">
+                <div class="aura-card-header">
+                  <h5 class="aura-card-title">
+                    <i class="bi bi-shop text-primary"></i>
+                    <span>Datos de la Tienda & Facturación</span>
+                  </h5>
+                </div>
+
+                <form id="formStoreSettings">
+                  <div class="mb-3">
+                    <label class="form-label small text-muted">Nombre Comercial</label>
+                    <input type="text" class="aura-input" id="cfgStoreName" required>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label small text-muted">Razón Social / Razón Legal</label>
+                    <input type="text" class="aura-input" id="cfgBusinessName">
+                  </div>
+                  <div class="row g-2 mb-3">
+                    <div class="col-6">
+                      <label class="form-label small text-muted">RFC / RUT / NIT</label>
+                      <input type="text" class="aura-input font-mono" id="cfgTaxId">
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label small text-muted">Teléfono de Contacto</label>
+                      <input type="text" class="aura-input font-mono" id="cfgPhone">
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label small text-muted">Dirección Fiscal / Ubicación</label>
+                    <input type="text" class="aura-input" id="cfgAddress">
+                  </div>
+                  <div class="row g-2 mb-3">
+                    <div class="col-6">
+                      <label class="form-label small text-muted">Moneda</label>
+                      <select class="aura-input" id="cfgCurrency">
+                        <option value="MXN">Peso Mexicano ($ MXN)</option>
+                        <option value="USD">Dólar Estadounidense ($ USD)</option>
+                        <option value="EUR">Euro (€ EUR)</option>
+                        <option value="COP">Peso Colombiano ($ COP)</option>
+                      </select>
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label small text-muted">Tasa General de IVA (%)</label>
+                      <input type="number" step="0.1" class="aura-input font-mono" id="cfgTaxRate" value="16">
+                    </div>
+                  </div>
+
+                  <button type="submit" class="btn btn-primary fw-bold px-4">
+                    <i class="bi bi-save me-1"></i>Guardar Datos de Tienda
+                  </button>
+                </form>
+              </div>
+            </div>
+
+            <!-- Ticket & Hardware Settings -->
+            <div class="col-lg-6">
+              <div class="aura-card">
+                <div class="aura-card-header">
+                  <h5 class="aura-card-title">
+                    <i class="bi bi-printer text-success"></i>
+                    <span>Configuración de Tickets Térmicos</span>
+                  </h5>
+                </div>
+
+                <form id="formTicketSettings">
+                  <div class="mb-3">
+                    <label class="form-label small text-muted">Encabezado de Ticket (Mensaje de Bienvenida)</label>
+                    <input type="text" class="aura-input" id="cfgTicketHeader">
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label small text-muted">Pie de Página (Políticas / Créditos Merasystems)</label>
+                    <textarea class="aura-input" id="cfgTicketFooter" rows="2"></textarea>
+                  </div>
+                  <div class="row g-2 mb-3">
+                    <div class="col-6">
+                      <label class="form-label small text-muted">Ancho de Papel</label>
+                      <select class="aura-input" id="cfgTicketWidth">
+                        <option value="80mm">80 mm (Estándar Punto de Venta)</option>
+                        <option value="58mm">58 mm (Impresora Portátil)</option>
+                      </select>
+                    </div>
+                    <div class="col-6 d-flex align-items-center mt-3">
+                      <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="cfgShowTaxBreakdown" checked>
+                        <label class="form-check-label small" for="cfgShowTaxBreakdown">Desglose de IVA en Ticket</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <button type="submit" class="btn btn-success fw-bold px-4">
+                    <i class="bi bi-save me-1"></i>Guardar Formato de Ticket
+                  </button>
+                </form>
+              </div>
+            </div>
+
+            <!-- Users and Roles Table -->
+            <div class="col-12">
+              <div class="aura-card">
+                <div class="aura-card-header">
+                  <h5 class="aura-card-title">
+                    <i class="bi bi-people-fill text-warning"></i>
+                    <span>Gestión Dinámica de Roles & Usuarios (Cajeros y Administradores)</span>
+                  </h5>
+                  <button class="btn btn-primary btn-sm fw-bold px-3 d-flex align-items-center gap-2 admin-only" id="btnOpenAddUser">
+                    <i class="bi bi-person-plus-fill"></i>
+                    <span>Nuevo Usuario</span>
+                  </button>
+                </div>
+
+                <div class="aura-table-container">
+                  <table class="aura-table">
+                    <thead>
+                      <tr>
+                        <th>Nombre Completo</th>
+                        <th>Usuario (Login)</th>
+                        <th>Rol</th>
+                        <th>PIN</th>
+                        <th>Permisos</th>
+                        <th>Estado</th>
+                        <th class="text-end">Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody id="usersTableBody">
+                      <!-- Injected via JavaScript -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- Audit Logs (audit.log) & Persistent State Viewer -->
+            <div class="col-12">
+              <div class="aura-card">
+                <div class="aura-card-header">
+                  <div class="d-flex align-items-center gap-2">
+                    <h5 class="aura-card-title mb-0">
+                      <i class="bi bi-shield-lock-fill text-danger"></i>
+                      <span>Registro de Auditoría de Acceso & Operaciones Críticas (audit.log)</span>
+                    </h5>
+                    <span class="badge bg-danger-subtle text-danger border border-danger-subtle font-mono">RBAC & PIN Conectados</span>
+                  </div>
+                  <div class="d-flex align-items-center gap-2">
+                    <button type="button" class="btn btn-outline-light btn-sm" id="btnRefreshAuditLogs">
+                      <i class="bi bi-arrow-repeat me-1"></i>Actualizar Logs
+                    </button>
+                    <a href="/api/audit/logs" target="_blank" class="btn btn-outline-secondary btn-sm" id="btnDownloadAuditFile" title="Ver archivo de auditoría">
+                      <i class="bi bi-file-earmark-text me-1"></i>Ver JSON
+                    </a>
+                  </div>
+                </div>
+
+                <div class="p-3 bg-dark bg-opacity-25 border-bottom border-secondary border-opacity-25 d-flex flex-wrap align-items-center justify-content-between gap-3">
+                  <div class="d-flex align-items-center gap-3 flex-grow-1" style="max-width: 500px;">
+                    <div class="input-group input-group-sm">
+                      <span class="input-group-text bg-dark border-secondary"><i class="bi bi-search"></i></span>
+                      <input type="text" class="aura-input py-1" id="inputFilterAuditLogs" placeholder="Filtrar por cajero, acción (CASH_DRAWER, DISCOUNT, STOCK), IP...">
+                    </div>
+                  </div>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-dark border border-secondary text-white font-mono small" id="badgeAuditLogCount">0 eventos</span>
+                    <span class="badge bg-dark border border-secondary text-info font-mono small" id="badgeConfigStatus">⚙️ config.json: Persistente</span>
+                  </div>
+                </div>
+
+                <div class="aura-table-container" style="max-height: 380px; overflow-y: auto;">
+                  <table class="aura-table">
+                    <thead>
+                      <tr>
+                        <th>Fecha / Hora</th>
+                        <th>Usuario / Cajero</th>
+                        <th>Rol</th>
+                        <th>Acción Registrada</th>
+                        <th>Detalles de la Operación</th>
+                        <th>IP Origen</th>
+                      </tr>
+                    </thead>
+                    <tbody id="auditLogsTableBody">
+                      <!-- Injected via JavaScript -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ============================================================== -->
+        <!-- VISTA 8: AYUDA, DOCUMENTACIÓN & ASISTENTE IA (AURA HELP DESK) -->
+        <!-- ============================================================== -->
+        <section class="view-section" id="view-help">
+          <div class="row g-4">
+            
+            <!-- AI Help Desk Hero Header -->
+            <div class="col-12">
+              <div class="ai-copilot-card p-4">
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3 mb-3">
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="brand-icon" style="width: 52px; height: 52px; font-size: 1.8rem; background: linear-gradient(135deg, var(--aura-cyan), var(--aura-indigo));">
+                      <i class="bi bi-robot"></i>
+                    </div>
+                    <div>
+                      <div class="d-flex align-items-center gap-2">
+                        <h4 class="mb-0 text-white fw-bold">Aura Help Desk & Copilot IA</h4>
+                        <span class="badge bg-info-subtle text-info font-mono">MERASYSTEMS CORE</span>
+                      </div>
+                      <p class="small text-muted mb-0">Asistencia técnica y manual operativo inteligente en tiempo real</p>
+                    </div>
+                  </div>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success-subtle text-success px-3 py-2">
+                      <i class="bi bi-check-circle-fill me-1"></i>Base de Conocimiento Activa
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Quick Suggestion Query Chips -->
+                <div class="mt-3">
+                  <span class="small text-muted d-block mb-2"><i class="bi bi-lightning-charge text-warning me-1"></i>Consultas Rápidas Frecuentes:</span>
+                  <div class="d-flex flex-wrap gap-2" id="quickHelpChipsContainer">
+                    <button type="button" class="btn btn-outline-secondary btn-sm chip-help-query" data-query="¿Cómo realizar un Corte Z de caja?">
+                      🧾 ¿Cómo hacer un Corte Z?
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary btn-sm chip-help-query" data-query="¿Cuáles son los atajos de teclado del punto de venta?">
+                      ⚡ Atajos de Teclado (F2, F4, F7, F9)
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary btn-sm chip-help-query" data-query="¿Cuáles son las diferencias de acceso entre Administrador y Cajero?">
+                      🛡️ Roles y Privilegios (RBAC)
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary btn-sm chip-help-query" data-query="¿Cómo conectar Google Drive o Dropbox con verificación 2FA?">
+                      ☁️ Nube & 2FA
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary btn-sm chip-help-query" data-query="¿Cómo activar mi licencia comercial MERA o el Modo Demo?">
+                      📜 Licencias y Modo Demo
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary btn-sm chip-help-query" data-query="¿Cómo funciona la apertura de cajón y el cobro con terminal bancaria?">
+                      🔌 Hardware y Cajón POS
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary btn-sm chip-help-query" data-query="¿Cómo importar y exportar productos en formato Excel CSV y XML?">
+                      📊 Importar / Exportar Catálogo
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Left: Interactive Chat with Help Desk IA -->
+            <div class="col-lg-8">
+              <div class="aura-card d-flex flex-column" style="min-height: 520px; height: 580px;">
+                <div class="aura-card-header py-3">
+                  <h5 class="aura-card-title mb-0">
+                    <i class="bi bi-chat-left-dots-fill text-cyan"></i>
+                    <span>Chat Asistido por IA - Manual de Operaciones</span>
+                  </h5>
+                  <button type="button" class="btn btn-outline-secondary btn-sm" id="btnClearHelpChat" title="Reiniciar Conversación">
+                    <i class="bi bi-arrow-counterclockwise me-1"></i>Limpiar
+                  </button>
+                </div>
+
+                <!-- Chat Feed -->
+                <div class="chat-feed-container flex-grow-1 p-3 overflow-y-auto" id="helpChatFeed" style="background: rgba(10, 15, 29, 0.4);">
+                  <!-- Default Welcome Message from AI -->
+                  <div class="chat-message assistant mb-3">
+                    <div class="d-flex gap-3 align-items-start">
+                      <div class="chat-avatar bot">
+                        <i class="bi bi-robot"></i>
+                      </div>
+                      <div class="chat-bubble">
+                        <div class="fw-bold text-cyan mb-1">Aura Copilot IA · Merasystems</div>
+                        <p class="mb-2">¡Hola! Soy tu asistente de soporte técnico y manual operativo de <strong>Aura POS Enterprise Edition</strong>.</p>
+                        <p class="mb-2">Puedes preguntarme cualquier duda sobre operaciones de mostrador, arqueos de caja, atajos de teclado, respaldo en la nube con 2FA, periféricos de hardware o gestión de licencias.</p>
+                        <div class="small text-muted font-mono">Selecciona una consulta rápida arriba o escribe tu pregunta abajo.</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Chat Input Form -->
+                <div class="p-3 border-top border-secondary border-opacity-25 bg-dark bg-opacity-50">
+                  <form id="formHelpChat" class="d-flex gap-2">
+                    <input type="text" class="aura-input flex-grow-1" id="inputHelpQuery" placeholder="Escribe tu consulta operativa (ej. ¿Cómo aplicar descuento con F7?)..." autocomplete="off" required>
+                    <button type="submit" class="btn btn-primary fw-bold px-4 d-flex align-items-center gap-2" id="btnSubmitHelpQuery">
+                      <span>Preguntar</span>
+                      <i class="bi bi-send-fill"></i>
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Quick Reference Guides & Keyboard Shortcuts -->
+            <div class="col-lg-4">
+              <div class="aura-card mb-4">
+                <div class="aura-card-header">
+                  <h6 class="aura-card-title fs-6">
+                    <i class="bi bi-keyboard-fill text-warning"></i>
+                    <span>Guía de Atajos de Teclado</span>
+                  </h6>
+                </div>
+                <div class="p-3">
+                  <div class="table-responsive">
+                    <table class="table table-sm table-dark table-borderless align-middle mb-0 font-mono" style="font-size: 0.82rem;">
+                      <tbody>
+                        <tr>
+                          <td><span class="badge bg-primary px-2 py-1">F2</span></td>
+                          <td>Cobro Rápido en Caja</td>
+                        </tr>
+                        <tr>
+                          <td><span class="badge bg-danger px-2 py-1">F4</span></td>
+                          <td>Vaciar Carrito Actual</td>
+                        </tr>
+                        <tr>
+                          <td><span class="badge bg-warning text-dark px-2 py-1">F7</span></td>
+                          <td>Descuento General (%)</td>
+                        </tr>
+                        <tr>
+                          <td><span class="badge bg-info text-dark px-2 py-1">F9</span></td>
+                          <td>Arqueo y Corte de Turno</td>
+                        </tr>
+                        <tr>
+                          <td><span class="badge bg-secondary px-2 py-1">Enter</span></td>
+                          <td>Agregar Producto Escaneado</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Quick Hardware Reference Card -->
+              <div class="aura-card">
+                <div class="aura-card-header">
+                  <h6 class="aura-card-title fs-6">
+                    <i class="bi bi-hdd-network-fill text-success"></i>
+                    <span>Integración de Hardware</span>
+                  </h6>
+                </div>
+                <div class="p-3 small text-muted">
+                  <div class="d-flex align-items-center gap-2 mb-2">
+                    <i class="bi bi-inbox-fill text-warning fs-5"></i>
+                    <div>
+                      <strong class="text-white d-block">Cajón de Dinero ESC/POS</strong>
+                      <span>Apertura por pulso de 24V al cobrar en efectivo.</span>
+                    </div>
+                  </div>
+                  <div class="d-flex align-items-center gap-2 mb-2">
+                    <i class="bi bi-credit-card-2-front-fill text-info fs-5"></i>
+                    <div>
+                      <strong class="text-white d-block">Terminal Bancaria</strong>
+                      <span>Aprobación y autorización directa en ticket.</span>
+                    </div>
+                  </div>
+                  <div class="d-flex align-items-center gap-2">
+                    <i class="bi bi-cloud-lock-fill text-cyan fs-5"></i>
+                    <div>
+                      <strong class="text-white d-block">Respaldo 2FA</strong>
+                      <span>Sincronización segura con Google Drive y Dropbox.</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: COBRO / PAGO DE TICKET (CHECKOUT)   -->
+  <!-- ========================================== -->
+  <div class="modal fade" id="modalCheckout" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content aura-modal">
+        
+        <div class="modal-header aura-modal-header">
+          <h5 class="modal-title fw-bold text-white d-flex align-items-center gap-2">
+            <i class="bi bi-credit-card-2-front-fill text-success"></i>
+            <span>Cobro de Ticket</span>
+          </h5>
+          <button type="button" class="btn-close-white-custom" data-bs-dismiss="modal">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+
+        <div class="modal-body p-4">
+          <div class="row g-4">
+            
+            <!-- Left Payment Form -->
+            <div class="col-md-7">
+              <!-- Customer Field -->
+              <div class="mb-3">
+                <label class="form-label small text-muted">Cliente / Receptor</label>
+                <div class="input-group">
+                  <span class="input-group-text bg-dark border-secondary"><i class="bi bi-person"></i></span>
+                  <input type="text" class="aura-input" id="checkoutCustomer" value="Público en General">
+                </div>
+              </div>
+
+              <!-- Payment Method Selector -->
+              <label class="form-label small text-muted">Método de Pago</label>
+              <div class="d-flex gap-2 mb-3">
+                <button class="btn btn-outline-success flex-grow-1 active payment-method-btn" data-method="Efectivo" id="btnMethodCash">
+                  <i class="bi bi-cash me-1"></i>Efectivo
+                </button>
+                <button class="btn btn-outline-info flex-grow-1 payment-method-btn" data-method="Terminal / Tarjeta" id="btnMethodCard">
+                  <i class="bi bi-credit-card me-1"></i>Tarjeta
+                </button>
+                <button class="btn btn-outline-primary flex-grow-1 payment-method-btn" data-method="Transferencia SPEI" id="btnMethodTransfer">
+                  <i class="bi bi-qr-code me-1"></i>Transferencia
+                </button>
+              </div>
+
+              <!-- Cash Tender Section -->
+              <div id="cashTenderSection">
+                <label class="form-label small text-muted">Monto Recibido ($)</label>
+                <input type="number" step="any" class="aura-input font-mono fs-4 fw-bold text-success mb-2" id="checkoutAmountPaid" placeholder="0.00">
+                
+                <!-- Quick Tender Cash Buttons -->
+                <div class="tender-grid">
+                  <button class="btn-tender" data-tender="exact">Exacto</button>
+                  <button class="btn-tender" data-tender="50">$50</button>
+                  <button class="btn-tender" data-tender="100">$100</button>
+                  <button class="btn-tender" data-tender="200">$200</button>
+                  <button class="btn-tender" data-tender="500">$500</button>
+                  <button class="btn-tender" data-tender="1000">$1,000</button>
+                </div>
+              </div>
+
+              <!-- Bank Terminal Processing Section (Card Payment) -->
+              <div id="cardTerminalSection" class="d-none mb-3">
+                <div class="p-3 rounded-3 bg-dark border border-info border-opacity-50">
+                  <div class="d-flex align-items-center justify-content-between mb-2">
+                    <span class="small fw-bold text-info d-flex align-items-center gap-2">
+                      <i class="bi bi-credit-card-2-front fs-5"></i> Terminal Bancaria Integrada
+                    </span>
+                    <span class="badge bg-info-subtle text-info font-mono" id="terminalStatusBadge">LISTA</span>
+                  </div>
+                  <p class="small text-muted mb-2">Inserte, deslice o acerque la tarjeta del cliente a la terminal POS para procesar el cobro.</p>
+                  <button type="button" class="btn btn-info w-100 fw-bold py-2 d-flex align-items-center justify-content-center gap-2" id="btnProcessTerminalPay">
+                    <i class="bi bi-cpu"></i>
+                    <span id="btnProcessTerminalPayText">Procesar en Terminal Bancaria</span>
+                  </button>
+                  <div id="terminalResultBox" class="mt-2 p-2 rounded bg-black small font-mono text-cyan d-none">
+                    <!-- Dynamic auth code -->
+                  </div>
+                </div>
+              </div>
+
+              <!-- SPEI / Digital Transfer Section -->
+              <div id="transferSection" class="d-none mb-3">
+                <div class="p-3 rounded-3 bg-dark border border-primary border-opacity-50 text-center">
+                  <span class="small fw-bold text-primary d-block mb-1"><i class="bi bi-qr-code me-1"></i>Cobro SPEI / Código Dinámico</span>
+                  <p class="small text-muted mb-0">Confirme la recepción de los fondos en la cuenta comercial antes de emitir el ticket.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Payment Breakdown -->
+            <div class="col-md-5">
+              <div class="p-3 rounded-3 bg-dark border border-secondary border-opacity-25 h-100 d-flex flex-direction-column justify-content-between">
+                <div>
+                  <h6 class="text-muted small text-uppercase fw-bold mb-3">Resumen de Venta</h6>
+                  <div class="d-flex justify-content-between mb-2">
+                    <span class="text-muted">Subtotal:</span>
+                    <span class="font-mono fw-bold" id="checkoutModalSubtotal">$0.00</span>
+                  </div>
+                  <div class="d-flex justify-content-between mb-2">
+                    <span class="text-muted">IVA:</span>
+                    <span class="font-mono fw-bold" id="checkoutModalTax">$0.00</span>
+                  </div>
+                  <div class="d-flex justify-content-between mb-3 text-warning d-none" id="checkoutModalDiscountRow">
+                    <span class="text-muted">Descuento:</span>
+                    <span class="font-mono fw-bold" id="checkoutModalDiscount">-$0.00</span>
+                  </div>
+                  <hr class="border-secondary">
+                  <div class="mb-3">
+                    <span class="small text-muted d-block">TOTAL A COBRAR</span>
+                    <span class="fs-2 font-mono fw-extrabold text-white" id="checkoutModalTotal">$0.00</span>
+                  </div>
+                </div>
+
+                <!-- Change calculation box -->
+                <div class="p-3 rounded bg-black border border-success border-opacity-50 text-center">
+                  <span class="small text-muted d-block text-uppercase fw-bold">Cambio a Entregar</span>
+                  <span class="fs-2 font-mono fw-extrabold text-success" id="checkoutModalChange">$0.00</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="modal-footer aura-modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-success fw-bold px-4 py-2 fs-6" id="btnConfirmPayment">
+            <i class="bi bi-printer-fill me-1"></i>Confirmar & Emitir Ticket
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: VISOR DE TICKET TÉRMICO / IMPRESIÓN -->
+  <!-- ========================================== -->
+  <div class="modal fade" id="modalTicketView" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content aura-modal">
+        
+        <div class="modal-header aura-modal-header">
+          <h5 class="modal-title fw-bold text-white">
+            <i class="bi bi-receipt text-primary me-2"></i>Vista Previa de Ticket
+          </h5>
+          <button type="button" class="btn-close-white-custom" data-bs-dismiss="modal">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+
+        <div class="modal-body p-4 bg-dark bg-opacity-50">
+          <div id="printableReceiptArea">
+            <div class="receipt-paper" id="receiptPaperContainer">
+              <!-- Injected dynamically via JavaScript -->
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer aura-modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary fw-bold" id="btnPrintReceipt">
+            <i class="bi bi-printer me-1"></i>Imprimir Ticket
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: CREAR / EDITAR PRODUCTO             -->
+  <!-- ========================================== -->
+  <div class="modal fade" id="modalProductForm" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content aura-modal">
+        
+        <div class="modal-header aura-modal-header">
+          <h5 class="modal-title fw-bold text-white" id="productModalTitle">
+            <i class="bi bi-box-seam text-primary me-2"></i>Nuevo Producto
+          </h5>
+          <button type="button" class="btn-close-white-custom" data-bs-dismiss="modal">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+
+        <form id="formProduct">
+          <input type="hidden" id="prodEditId">
+          <div class="modal-body p-4">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label small text-muted">Nombre del Producto</label>
+                <input type="text" class="aura-input" id="prodName" required placeholder="Ej. Café Espresso Molido 250g">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small text-muted">Categoría</label>
+                <input type="text" class="aura-input" id="prodCategory" required placeholder="Ej. Bebidas & Café">
+              </div>
+              
+              <div class="col-md-6">
+                <label class="form-label small text-muted">Código de Barras</label>
+                <div class="input-group">
+                  <input type="text" class="aura-input font-mono" id="prodBarcode" required>
+                  <button type="button" class="btn btn-outline-secondary" id="btnGenBarcode" title="Generar Código Automático">
+                    <i class="bi bi-magic"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small text-muted">SKU / Clave Interna</label>
+                <input type="text" class="aura-input font-mono" id="prodSku" required placeholder="BEB-001">
+              </div>
+
+              <div class="col-md-4">
+                <label class="form-label small text-muted">Precio de Costo ($)</label>
+                <input type="number" step="0.01" class="aura-input font-mono" id="prodCostPrice" required placeholder="0.00">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label small text-muted">Precio de Venta ($)</label>
+                <input type="number" step="0.01" class="aura-input font-mono" id="prodSalePrice" required placeholder="0.00">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label small text-muted">Tasa IVA (%)</label>
+                <input type="number" step="0.1" class="aura-input font-mono" id="prodTaxRate" value="16">
+              </div>
+
+              <!-- Real-time Margin & Profit Preview -->
+              <div class="col-12">
+                <div class="p-3 rounded bg-dark border border-secondary border-opacity-25 d-flex justify-content-between align-items-center">
+                  <div>
+                    <span class="small text-muted d-block">Utilidad Neta por Unidad:</span>
+                    <strong class="font-mono text-success fs-5" id="prodPreviewProfit">$0.00</strong>
+                  </div>
+                  <div>
+                    <span class="small text-muted d-block">Margen Bruto de Ganancia:</span>
+                    <strong class="font-mono text-cyan fs-5" id="prodPreviewMargin">0.0%</strong>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <label class="form-label small text-muted">Stock Inicial</label>
+                <input type="number" step="any" class="aura-input font-mono" id="prodStock" value="10">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label small text-muted">Stock Mínimo (Alerta)</label>
+                <input type="number" step="any" class="aura-input font-mono" id="prodMinStock" value="5">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label small text-muted">Unidad de Medida</label>
+                <select class="aura-input" id="prodUnit">
+                  <option value="Pza">Pieza (Pza)</option>
+                  <option value="Kg">Kilogramo (Kg)</option>
+                  <option value="Lt">Litro (Lt)</option>
+                  <option value="Paq">Paquete (Paq)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-footer aura-modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary fw-bold px-4">Guardar Producto</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: IMPORTACIÓN MASIVA DE PRODUCTOS      -->
+  <!-- ========================================== -->
+  <div class="modal fade" id="modalBulkImport" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content aura-modal">
+        
+        <div class="modal-header aura-modal-header">
+          <h5 class="modal-title fw-bold text-white">
+            <i class="bi bi-upload text-warning me-2"></i>Importación Masiva de Catálogo
+          </h5>
+          <button type="button" class="btn-close-white-custom" data-bs-dismiss="modal">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+
+        <div class="modal-body p-4">
+          <p class="small text-muted mb-3">
+            Selecciona un archivo <strong>Excel / CSV</strong> o <strong>XML</strong> con las columnas: <code>barcode, sku, name, category, costPrice, salePrice, stock, minStock</code>.
+          </p>
+
+          <div class="mb-3">
+            <label class="form-label small text-muted">Modo de Importación</label>
+            <select class="aura-input" id="importModeSelect">
+              <option value="merge">Fusionar y Actualizar (Recomendado)</option>
+              <option value="replace">Reemplazar Catálogo Completo</option>
+            </select>
+          </div>
+
+          <div class="p-4 border border-dashed rounded text-center mb-3" style="border-color: var(--glass-border-light) !important;">
+            <i class="bi bi-file-earmark-arrow-up fs-1 text-primary d-block mb-2"></i>
+            <span class="small text-white fw-bold d-block mb-1">Arrastra tu archivo aquí o haz clic</span>
+            <input type="file" id="inputBulkImportFile" accept=".csv,.xml,.txt" class="form-control form-control-sm bg-dark border-secondary">
+          </div>
+
+          <div id="importPreviewSummary" class="d-none p-2 rounded bg-black small font-mono text-cyan">
+            <!-- Summary of parsed items -->
+          </div>
+        </div>
+
+        <div class="modal-footer aura-modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-warning fw-bold px-4 text-dark" id="btnExecuteBulkImport" disabled>
+            <i class="bi bi-check2-all me-1"></i>Procesar Importación
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: AJUSTE DE STOCK FÍSICO              -->
+  <!-- ========================================== -->
+  <div class="modal fade" id="modalStockAdjust" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content aura-modal">
+        
+        <div class="modal-header aura-modal-header">
+          <h5 class="modal-title fw-bold text-white">
+            <i class="bi bi-boxes text-info me-2"></i>Ajustar Existencia de Inventario
+          </h5>
+          <button type="button" class="btn-close-white-custom" data-bs-dismiss="modal">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+
+        <form id="formStockAdjust">
+          <input type="hidden" id="adjustProdId">
+          <div class="modal-body p-4">
+            <div class="mb-3">
+              <span class="small text-muted d-block">Producto a Modificar:</span>
+              <h6 class="fw-bold text-white" id="adjustProdName">--</h6>
+              <span class="small text-info">Stock Actual: <strong id="adjustProdCurrentStock" class="font-mono">0</strong></span>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label small text-muted">Tipo de Ajuste</label>
+              <select class="aura-input" id="adjustType">
+                <option value="ADD">Entrada por Compra / Reabastecimiento (+)</option>
+                <option value="SUBTRACT">Salida por Merma / Daño / Caducidad (-)</option>
+                <option value="SET">Ajuste / Conteo Físico Exacto (=)</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label small text-muted">Cantidad</label>
+              <input type="number" step="any" min="0.01" class="aura-input font-mono fs-5" id="adjustQuantity" required placeholder="0">
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label small text-muted">Motivo / Justificación</label>
+              <input type="text" class="aura-input" id="adjustReason" required placeholder="Ej. Factura de compra #9842">
+            </div>
+          </div>
+
+          <div class="modal-footer aura-modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-info fw-bold px-4">Aplicar Ajuste</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: MOVIMIENTO DE EFECTIVO (TURNO)      -->
+  <!-- ========================================== -->
+  <div class="modal fade" id="modalCashMovement" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content aura-modal">
+        
+        <div class="modal-header aura-modal-header">
+          <h5 class="modal-title fw-bold text-white">
+            <i class="bi bi-arrow-left-right text-info me-2"></i>Registrar Entrada / Salida de Efectivo
+          </h5>
+          <button type="button" class="btn-close-white-custom" data-bs-dismiss="modal">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+
+        <form id="formCashMovement">
+          <div class="modal-body p-4">
+            <div class="mb-3">
+              <label class="form-label small text-muted">Tipo de Movimiento</label>
+              <div class="d-flex gap-2">
+                <button type="button" class="btn btn-outline-info flex-grow-1 active cash-mov-type-btn" data-type="IN">
+                  <i class="bi bi-box-arrow-in-down me-1"></i>Entrada (+)
+                </button>
+                <button type="button" class="btn btn-outline-danger flex-grow-1 cash-mov-type-btn" data-type="OUT">
+                  <i class="bi bi-box-arrow-up-right me-1"></i>Retiro / Gasto (-)
+                </button>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label small text-muted">Monto en Efectivo ($)</label>
+              <input type="number" step="0.01" min="1" class="aura-input font-mono fs-4 text-white" id="cashMovAmount" required placeholder="0.00">
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label small text-muted">Concepto / Justificación</label>
+              <input type="text" class="aura-input" id="cashMovReason" required placeholder="Ej. Pago a proveedor de panadería">
+            </div>
+          </div>
+
+          <div class="modal-footer aura-modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary fw-bold px-4">Registrar Movimiento</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: CIERRE DE TURNO / CORTE Z           -->
+  <!-- ========================================== -->
+  <div class="modal fade" id="modalShiftCut" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content aura-modal">
+        
+        <div class="modal-header aura-modal-header">
+          <h5 class="modal-title fw-bold text-warning">
+            <i class="bi bi-lock-fill me-2"></i>Cierre de Turno & Corte Z
+          </h5>
+          <button type="button" class="btn-close-white-custom" data-bs-dismiss="modal">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+
+        <form id="formShiftCut">
+          <div class="modal-body p-4">
+            <div class="p-3 rounded bg-dark border border-secondary border-opacity-25 mb-3 text-center">
+              <span class="small text-muted d-block text-uppercase fw-bold">Efectivo Teórico Esperado</span>
+              <span class="fs-2 font-mono fw-extrabold text-warning" id="shiftCutExpectedTotal">$0.00</span>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label small text-muted">Efectivo Real Contado en Cajón ($)</label>
+              <input type="number" step="0.01" class="aura-input font-mono fs-4 text-success" id="shiftCutCounted" required placeholder="0.00">
+            </div>
+
+            <!-- Difference indicator -->
+            <div class="d-flex justify-content-between align-items-center p-2 rounded bg-black mb-3">
+              <span class="small text-muted">Diferencia de Caja:</span>
+              <strong class="font-mono fs-6" id="shiftCutDifference">$0.00</strong>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label small text-muted">Observaciones / Notas del Cierre</label>
+              <textarea class="aura-input" id="shiftCutNotes" rows="2" placeholder="Comentarios del turno..."></textarea>
+            </div>
+          </div>
+
+          <div class="modal-footer aura-modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-warning fw-bold text-dark px-4">
+              <i class="bi bi-printer me-1"></i>Finalizar & Emitir Corte Z
+            </button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: CAMBIO DE USUARIO / DESBLOQUEO CON PIN -->
+  <!-- ========================================== -->
+  <div class="modal fade" id="modalSwitchUser" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+      <div class="modal-content aura-modal">
+        
+        <div class="modal-header aura-modal-header">
+          <h5 class="modal-title fw-bold text-white">
+            <i class="bi bi-person-badge text-primary me-2"></i>Cambiar Usuario
+          </h5>
+          <button type="button" class="btn-close-white-custom" data-bs-dismiss="modal">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+
+        <div class="modal-body p-3">
+          <div class="list-group list-group-flush mb-3" id="usersQuickList">
+            <!-- Injected via JavaScript -->
+          </div>
+
+          <div class="mb-2">
+            <label class="form-label small text-muted">Ingresar PIN de 4 dígitos</label>
+            <input type="password" maxlength="4" class="aura-input font-mono text-center fs-4 letter-spacing-lg" id="inputUserPin" placeholder="••••">
+          </div>
+        </div>
+
+        <div class="modal-footer aura-modal-footer">
+          <button type="button" class="btn btn-primary w-100 fw-bold" id="btnConfirmUserPin">Desbloquear Sesión</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: GESTIÓN DE USUARIO (CREAR / EDITAR) -->
+  <!-- ========================================== -->
+  <div class="modal fade" id="modalUserForm" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content aura-modal">
+        
+        <div class="modal-header aura-modal-header">
+          <h5 class="modal-title fw-bold text-white d-flex align-items-center gap-2" id="userModalTitle">
+            <i class="bi bi-person-badge-fill text-primary"></i>
+            <span>Nuevo Usuario</span>
+          </h5>
+          <button type="button" class="btn-close-white-custom" data-bs-dismiss="modal">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+
+        <form id="formUser">
+          <input type="hidden" id="userEditId">
+          <div class="modal-body p-4">
+            <div class="mb-3">
+              <label class="form-label small text-muted">Nombre Completo</label>
+              <input type="text" class="aura-input" id="userName" required placeholder="Ej. Carlos Mendoza">
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label small text-muted">Nombre de Usuario (Login)</label>
+              <input type="text" class="aura-input font-mono" id="userUsername" required placeholder="Ej. cmendoza">
+            </div>
+
+            <div class="row g-2 mb-3">
+              <div class="col-6">
+                <label class="form-label small text-muted">Rol en el Sistema</label>
+                <select class="aura-input" id="userRole" required>
+                  <option value="Administrador">Administrador</option>
+                  <option value="Cajero">Cajero</option>
+                </select>
+              </div>
+              <div class="col-6">
+                <label class="form-label small text-muted">PIN de Acceso (4 dígitos)</label>
+                <input type="password" maxlength="4" class="aura-input font-mono text-center fs-5" id="userPin" required placeholder="1234">
+              </div>
+            </div>
+
+            <div class="p-3 rounded bg-dark border border-secondary border-opacity-25 d-flex align-items-center justify-content-between">
+              <div>
+                <span class="small text-white fw-bold d-block">Estado del Usuario</span>
+                <span class="small text-muted">Usuario activo y habilitado para inicio de sesión</span>
+              </div>
+              <div class="form-check form-switch fs-5">
+                <input class="form-check-input" type="checkbox" id="userActive" checked>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-footer aura-modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary fw-bold px-4" id="btnSaveUser">
+              <i class="bi bi-check2-circle me-1"></i>Guardar Usuario
+            </button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- MODAL: CONEXIÓN CLOUD CON AUTENTICACIÓN EN DOS PASOS (2FA)     -->
+  <!-- MODAL DIRECTO: VINCULAR ALMACENAMIENTO EN LA NUBE -->
+  <!-- ============================================================== -->
+  <div class="modal fade" id="modalCloudConnect" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content aura-modal">
+        
+        <div class="modal-header aura-modal-header">
+          <h5 class="modal-title fw-bold text-white d-flex align-items-center gap-2" id="cloudModalTitle">
+            <i class="bi bi-cloud-arrow-up-fill text-cyan"></i>
+            <span>Vincular Almacenamiento en la Nube</span>
+          </h5>
+          <button type="button" class="btn-close-white-custom" data-bs-dismiss="modal">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+
+        <form id="formCloudConnectDirect">
+          <input type="hidden" id="cloudProviderInput" value="drive">
+          <div class="modal-body p-4">
+            <div class="p-3 rounded bg-dark border border-secondary border-opacity-25 mb-3 text-center">
+              <div class="fs-1 mb-2" id="cloudModalIcon"><i class="bi bi-google text-primary"></i></div>
+              <h6 class="fw-bold text-white mb-1" id="cloudModalProviderName">Google Drive Cloud Storage</h6>
+              <p class="small text-muted mb-0">Vinculación persistente y directa de respaldos automáticos en la nube.</p>
+            </div>
+
+            <!-- OAuth 1-Click Fast Connect -->
+            <div class="p-3 rounded bg-dark-subtle border border-primary border-opacity-50 mb-3 text-center">
+              <span class="small text-white fw-bold d-block mb-2">Autenticación Rápida Multiplataforma</span>
+              <button type="button" class="btn btn-primary btn-sm w-100 fw-bold py-2" id="btnStartOAuthFlow">
+                <i class="bi bi-box-arrow-up-right me-1"></i> Autorizar con OAuth 2.0 (localhost:3000)
+              </button>
+              <span class="small text-muted d-block mt-2" style="font-size: 11px;">Abre la ventana oficial de consentimiento y enlaza los tokens automáticamente en el servidor local.</span>
+            </div>
+
+            <div class="d-flex align-items-center my-3">
+              <hr class="flex-grow-1 border-secondary opacity-50 m-0">
+              <span class="px-2 small text-muted font-mono" style="font-size: 10px;">O CONFIGURACIÓN MANUAL</span>
+              <hr class="flex-grow-1 border-secondary opacity-50 m-0">
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label small text-muted">Cuenta de Correo / Usuario Asociado</label>
+              <input type="email" class="aura-input font-mono" id="cloudAccountInput" required placeholder="empresa@correo.com">
+              <span class="small text-muted d-block mt-1">Esta cuenta quedará registrada en <code class="text-cyan">config.json</code> para la sincronización de respaldos.</span>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label small text-muted d-flex align-items-center justify-content-between">
+                <span>API Key / Token de Acceso Oficial</span>
+                <span class="badge bg-primary-subtle text-primary font-mono" style="font-size: 10px;">OAuth / API Direct</span>
+              </label>
+              <div class="input-group">
+                <span class="input-group-text bg-dark border-secondary text-cyan"><i class="bi bi-key-fill"></i></span>
+                <input type="text" class="form-control aura-input font-mono text-cyan" id="cloudApiKeyInput" placeholder="AIzaSy... / sl.u.A..." style="background-color: #0b0f19; border-color: #2a3447;">
+              </div>
+              <span class="small text-muted d-block mt-1">Llave de autenticación para subir respaldos comprimidos automáticamente al cierre de turno.</span>
+            </div>
+
+            <div class="p-2 rounded bg-black small font-mono text-cyan mb-2" id="cloudTargetPathNotice">
+              📁 Directorio Físico: /CloudSync_DRIVE/AuraPOS_Respaldo/
+            </div>
+          </div>
+
+          <div class="modal-footer aura-modal-footer d-flex justify-content-between">
+            <button type="button" class="btn btn-outline-info btn-sm" id="btnTestCloudApiKey">
+              <i class="bi bi-broadcast me-1"></i>Probar Conexión con API Key
+            </button>
+            <div class="d-flex gap-2">
+              <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <button type="submit" class="btn btn-primary fw-bold px-4" id="btnSubmitCloudConnect">
+                <i class="bi bi-link-45deg me-1"></i>Guardar y Vincular
+              </button>
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================================================== -->
+  <!-- OVERLAY / MODAL DE BLOQUEO POR EXPIRACIÓN DE PRUEBA 7 DÍAS (LOCK SCREEN) -->
+  <!-- ====================================================================== -->
+  <div class="trial-lock-overlay d-none" id="modalTrialLockScreen">
+    <div class="trial-lock-card">
+      <div class="trial-lock-icon">
+        <i class="bi bi-shield-lock-fill"></i>
+      </div>
+      <h3 class="fw-bold text-white mb-1">Periodo de Prueba Expirado (7 Días)</h3>
+      <p class="text-muted small mb-3">
+        El tiempo de evaluación gratuita de <strong>Aura POS Enterprise</strong> ha concluido. Para continuar realizando cobros y gestionando su negocio, active una licencia comercial autorizada de Merasystems.
+      </p>
+
+      <!-- Machine ID Box -->
+      <div class="machine-id-box text-start mb-3">
+        <div>
+          <span class="text-muted small d-block" style="font-size: 0.72rem;">ID DE HARDWARE DEL EQUIPO (MACHINE ID):</span>
+          <span class="machine-id-text fs-6" id="lockScreenMachineId">MERA-MID-XXXX-XXXX-XXXX-XXXX</span>
+        </div>
+        <button type="button" class="btn btn-outline-cyan btn-sm py-1 px-3 d-flex align-items-center gap-1" id="btnCopyLockScreenMachineId">
+          <i class="bi bi-copy"></i>
+          <span>Copiar ID</span>
+        </button>
+      </div>
+
+      <div class="p-3 rounded bg-dark border border-secondary border-opacity-50 text-start mb-3 small text-muted font-mono">
+        <div class="d-flex justify-content-between mb-1">
+          <span>🏢 Empresa: <strong class="text-white">Merasystems Corp</strong></span>
+          <span>👨‍💻 Autor: <strong class="text-white">ISC Héctor Raúl Aranda</strong></span>
+        </div>
+        <div class="d-flex justify-content-between">
+          <span>📞 Soporte: <strong class="text-cyan">+52 (55) 8432-9000</strong></span>
+          <span>✉️ Contacto: <strong class="text-cyan">licencias@merasystems.com</strong></span>
+        </div>
+      </div>
+
+      <!-- License Key Activation Form -->
+      <form id="formLockScreenActivation">
+        <div class="mb-3">
+          <label class="form-label small text-muted d-block text-start">Ingrese la Clave Comercial Provista por Merasystems:</label>
+          <input type="text" class="aura-input font-mono text-center fs-5 fw-bold text-success letter-spacing-md" id="inputLockScreenLicenseKey" placeholder="MERA-XXXX-XXXX-XXXX-XXXX" required autocomplete="off">
+        </div>
+        <div class="d-grid gap-2">
+          <button type="submit" class="btn btn-success btn-lg fw-bold d-flex align-items-center justify-content-center gap-2" id="btnSubmitLockScreenActivation">
+            <i class="bi bi-patch-check-fill"></i>
+            <span>Validar y Activar Licencia</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- NOTIFICACIÓN TOAST FLOTANTE                -->
+  <!-- ========================================== -->
+  <div class="aura-toast" id="auraToast">
+    <i class="bi bi-check-circle-fill text-success fs-5" id="toastIcon"></i>
+    <div>
+      <h6 class="mb-0 fw-bold" id="toastTitle">Éxito</h6>
+      <p class="mb-0 small text-muted" id="toastMessage">Operación realizada correctamente</p>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

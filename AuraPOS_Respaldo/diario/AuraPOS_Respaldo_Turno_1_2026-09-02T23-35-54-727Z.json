@@ -1,0 +1,120 @@
+{
+  "backupType": "AUTO_SHIFT_CLOSE_Z",
+  "version": "2.5.0 Enterprise Pro",
+  "generatedAt": "2026-09-02T23:35:54.727Z",
+  "author": "ISC Héctor Raúl Antonio Aranda Barroso",
+  "company": "Merasystems",
+  "licenseKey": "DEMO",
+  "machineId": "MERA-MID-D393-62C5-6313-86ED",
+  "cloudEnv": {
+    "gdrive": true,
+    "dropbox": false
+  },
+  "shift": {
+    "id": "shift_1",
+    "shiftNumber": 1,
+    "openedAt": "2026-09-02T23:35:18.023Z",
+    "cashier": "Administrador General",
+    "cashierId": "usr_admin",
+    "initialCash": 0,
+    "status": "CLOSED",
+    "movements": [],
+    "closedAt": "2026-09-02T23:35:54.727Z",
+    "countedCash": 4800,
+    "notes": "Corte de turno con respaldo automático hacia Google Drive (.env)"
+  },
+  "todaySales": [],
+  "products": [],
+  "users": [
+    {
+      "id": "usr_admin",
+      "name": "Administrador General",
+      "username": "admin",
+      "role": "Administrador",
+      "pin": "1234",
+      "active": true,
+      "avatar": "AD"
+    }
+  ],
+  "settings": {
+    "storeName": "Mi Comercio POS",
+    "businessName": "Aura POS Retail Systems",
+    "taxId": "XAXX010101000",
+    "address": "Dirección Principal del Establecimiento",
+    "phone": "+52 (00) 0000-0000",
+    "email": "contacto@micomercio.com",
+    "currency": "MXN",
+    "currencySymbol": "$",
+    "taxRate": 16,
+    "taxInclusive": false,
+    "ticketHeader": "¡BIENVENIDO A SU COMERCIO!",
+    "ticketFooter": "¡Gracias por su compra! Desarrollado por Merasystems.",
+    "showTaxBreakdown": true,
+    "ticketPaperWidth": "80mm",
+    "storageDestination": "local",
+    "gdriveAccount": "Google Drive Corporativo (.env)",
+    "gdriveApiKey": "ya29.MERA_OAUTH_TOKEN_1788392154437",
+    "gdriveConfiguredViaEnv": true,
+    "dropboxAccount": "No vinculado",
+    "dropboxApiKey": "",
+    "dropboxConfiguredViaEnv": false,
+    "gdriveConnected": true,
+    "dropboxConnected": false,
+    "enableMetrics": true,
+    "reportFrequency": "mensual",
+    "theme": "dark",
+    "autoPrint": false
+  },
+  "auditLogs": [
+    {
+      "timestamp": "2026-09-02T23:35:54.725Z",
+      "level": "INFO",
+      "userId": "system",
+      "userName": "Administrador",
+      "userRole": "Administrador",
+      "action": "CLOUD_KEY_TEST",
+      "details": "Prueba de conexión Cloud para Google Drive (Google Drive Corporativo (.env)) [.env] - Latencia: 32ms, Estado: OK",
+      "ip": "127.0.0.1"
+    },
+    {
+      "timestamp": "2026-09-02T23:35:54.625Z",
+      "level": "INFO",
+      "userId": "system",
+      "userName": "ISC Héctor Raúl",
+      "userRole": "Cajero / Administrador",
+      "action": "MANUAL_BACKUP_CREATED",
+      "details": "Respaldo unificado cifrado (AES-256) subido a la nube [Google Drive (OAuth .env)] (9 archivos generados)",
+      "ip": "127.0.0.1"
+    },
+    {
+      "timestamp": "2026-09-02T23:35:54.596Z",
+      "level": "INFO",
+      "userId": "system",
+      "userName": "Administrador",
+      "userRole": "Administrador",
+      "action": "OAUTH_GOOGLE_CONNECTED",
+      "details": "Autenticación OAuth 2.0 completada exitosamente con Google Drive en localhost:3000",
+      "ip": "127.0.0.1"
+    },
+    {
+      "timestamp": "2026-09-02T23:35:54.318Z",
+      "level": "INFO",
+      "userId": "system",
+      "userName": "Administrador General",
+      "userRole": "Administrador",
+      "action": "FACTORY_RESET",
+      "details": "Restablecimiento de fábrica ejecutado. Base de datos reiniciada a estado prístino.",
+      "ip": "127.0.0.1"
+    },
+    {
+      "timestamp": "2026-09-02T23:35:37.409Z",
+      "level": "INFO",
+      "userId": "system",
+      "userName": "Administrador General",
+      "userRole": "Administrador",
+      "action": "FACTORY_RESET",
+      "details": "Restablecimiento de fábrica ejecutado. Base de datos reiniciada a estado prístino.",
+      "ip": "127.0.0.1"
+    }
+  ]
+}

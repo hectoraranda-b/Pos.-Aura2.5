@@ -1,0 +1,643 @@
+{
+  "backupType": "AUTO_SHIFT_CLOSE_Z",
+  "generatedAt": "2026-09-02T20:41:36.974Z",
+  "author": "ISC Héctor Raúl Antonio Aranda Barroso",
+  "company": "Merasystems",
+  "licenseKey": "MERA-AURA-ENTERPRISE-2026-X89",
+  "shift": {
+    "id": "shift_1788380972059",
+    "shiftNumber": 114,
+    "openedAt": "2026-09-02T20:29:32.059Z",
+    "cashier": "Carlos Mendoza",
+    "cashierId": "usr_1",
+    "initialCash": 2450,
+    "status": "CLOSED",
+    "movements": [],
+    "closedAt": "2026-09-02T20:41:36.974Z",
+    "countedCash": 2450,
+    "notes": "Cierre de turno con arqueo completo"
+  },
+  "todaySales": [
+    {
+      "id": "TKT-1015",
+      "ticketNumber": 1015,
+      "date": "2026-09-02T20:41:34.277Z",
+      "cashier": "Carlos Mendoza",
+      "cashierId": "usr_1",
+      "customer": "Público en General",
+      "paymentMethod": "Efectivo",
+      "terminalAuth": null,
+      "terminalTxn": null,
+      "items": [
+        {
+          "id": "prod_1",
+          "name": "Café Espresso",
+          "quantity": 1,
+          "salePrice": 89
+        }
+      ],
+      "subtotal": 0,
+      "taxAmount": 0,
+      "discount": 0,
+      "total": 89,
+      "amountPaid": 89,
+      "changeReturned": 0,
+      "status": "COMPLETED"
+    },
+    {
+      "id": "TKT-1014",
+      "ticketNumber": 1014,
+      "date": "2026-09-02T20:29:29.622Z",
+      "cashier": "Carlos Mendoza",
+      "cashierId": "usr_1",
+      "customer": "Público en General",
+      "paymentMethod": "Efectivo",
+      "terminalAuth": null,
+      "terminalTxn": null,
+      "items": [
+        {
+          "id": "prod_1",
+          "name": "Café Espresso",
+          "quantity": 1,
+          "salePrice": 89
+        }
+      ],
+      "subtotal": 0,
+      "taxAmount": 0,
+      "discount": 0,
+      "total": 89,
+      "amountPaid": 89,
+      "changeReturned": 0,
+      "status": "COMPLETED"
+    },
+    {
+      "id": "TKT-1013",
+      "ticketNumber": 1013,
+      "date": "2026-09-02T20:24:56.143Z",
+      "cashier": "Carlos Mendoza",
+      "cashierId": "usr_1",
+      "customer": "Público en General",
+      "paymentMethod": "Efectivo",
+      "terminalAuth": null,
+      "terminalTxn": null,
+      "items": [
+        {
+          "id": "prod_1",
+          "name": "Café Espresso",
+          "quantity": 1,
+          "salePrice": 89
+        }
+      ],
+      "subtotal": 0,
+      "taxAmount": 0,
+      "discount": 0,
+      "total": 89,
+      "amountPaid": 89,
+      "changeReturned": 0,
+      "status": "COMPLETED"
+    },
+    {
+      "id": "TKT-1012",
+      "ticketNumber": 1012,
+      "date": "2026-09-02T14:10:40.195Z",
+      "cashier": "Carlos Mendoza",
+      "cashierId": "usr_1",
+      "customer": "Público en General",
+      "paymentMethod": "Efectivo",
+      "terminalAuth": null,
+      "terminalTxn": null,
+      "items": [
+        {
+          "id": "prod_1",
+          "name": "Café Espresso",
+          "quantity": 1,
+          "salePrice": 89
+        }
+      ],
+      "subtotal": 0,
+      "taxAmount": 0,
+      "discount": 0,
+      "total": 89,
+      "amountPaid": 89,
+      "changeReturned": 0,
+      "status": "COMPLETED"
+    },
+    {
+      "id": "TKT-1011",
+      "ticketNumber": 1011,
+      "date": "2026-09-02T14:08:27.892Z",
+      "cashier": "Carlos Mendoza",
+      "cashierId": "usr_1",
+      "customer": "Público en General",
+      "paymentMethod": "Efectivo",
+      "terminalAuth": null,
+      "terminalTxn": null,
+      "items": [
+        {
+          "id": "prod_1",
+          "name": "Café Espresso",
+          "quantity": 1,
+          "salePrice": 89
+        }
+      ],
+      "subtotal": 0,
+      "taxAmount": 0,
+      "discount": 0,
+      "total": 89,
+      "amountPaid": 89,
+      "changeReturned": 0,
+      "status": "COMPLETED"
+    },
+    {
+      "id": "TKT-1010",
+      "ticketNumber": 1010,
+      "date": "2026-09-02T14:05:24.972Z",
+      "cashier": "Carlos Mendoza",
+      "cashierId": "usr_1",
+      "customer": "Público en General",
+      "paymentMethod": "Efectivo",
+      "terminalAuth": null,
+      "terminalTxn": null,
+      "items": [
+        {
+          "id": "prod_1",
+          "name": "Café Espresso",
+          "quantity": 1,
+          "salePrice": 89
+        }
+      ],
+      "subtotal": 0,
+      "taxAmount": 0,
+      "discount": 0,
+      "total": 89,
+      "amountPaid": 89,
+      "changeReturned": 0,
+      "status": "COMPLETED"
+    },
+    {
+      "id": "TKT-1009",
+      "ticketNumber": 1009,
+      "date": "2026-09-02T13:59:13.370Z",
+      "cashier": "Carlos Mendoza",
+      "cashierId": "usr_1",
+      "customer": "Público en General",
+      "paymentMethod": "Efectivo",
+      "terminalAuth": null,
+      "terminalTxn": null,
+      "items": [
+        {
+          "id": "prod_1",
+          "name": "Café Espresso",
+          "quantity": 1,
+          "salePrice": 89
+        }
+      ],
+      "subtotal": 0,
+      "taxAmount": 0,
+      "discount": 0,
+      "total": 89,
+      "amountPaid": 89,
+      "changeReturned": 0,
+      "status": "COMPLETED"
+    },
+    {
+      "id": "TKT-1008",
+      "ticketNumber": 1008,
+      "date": "2026-09-02T13:55:56.572Z",
+      "cashier": "Carlos Mendoza",
+      "cashierId": "usr_1",
+      "customer": "Público en General",
+      "paymentMethod": "Efectivo",
+      "terminalAuth": null,
+      "terminalTxn": null,
+      "items": [
+        {
+          "id": "prod_1",
+          "name": "Café Espresso",
+          "quantity": 1,
+          "salePrice": 89
+        }
+      ],
+      "subtotal": 0,
+      "taxAmount": 0,
+      "discount": 0,
+      "total": 89,
+      "amountPaid": 89,
+      "changeReturned": 0,
+      "status": "COMPLETED"
+    },
+    {
+      "id": "TKT-1007",
+      "ticketNumber": 1007,
+      "date": "2026-09-02T13:53:35.236Z",
+      "cashier": "Carlos Mendoza",
+      "cashierId": "usr_1",
+      "customer": "Público en General",
+      "paymentMethod": "Efectivo",
+      "terminalAuth": null,
+      "terminalTxn": null,
+      "items": [
+        {
+          "id": "prod_1",
+          "name": "Café Espresso",
+          "quantity": 1,
+          "salePrice": 89
+        }
+      ],
+      "subtotal": 0,
+      "taxAmount": 0,
+      "discount": 0,
+      "total": 89,
+      "amountPaid": 89,
+      "changeReturned": 0,
+      "status": "COMPLETED"
+    },
+    {
+      "id": "TKT-1006",
+      "ticketNumber": 1006,
+      "date": "2026-09-02T13:31:35.510Z",
+      "cashier": "Carlos Mendoza",
+      "cashierId": "usr_1",
+      "customer": "Público en General",
+      "paymentMethod": "Efectivo",
+      "terminalAuth": null,
+      "terminalTxn": null,
+      "items": [
+        {
+          "id": "prod_1",
+          "name": "Café Espresso",
+          "quantity": 1,
+          "salePrice": 89
+        }
+      ],
+      "subtotal": 0,
+      "taxAmount": 0,
+      "discount": 0,
+      "total": 89,
+      "amountPaid": 89,
+      "changeReturned": 0,
+      "status": "COMPLETED"
+    },
+    {
+      "id": "TKT-1005",
+      "ticketNumber": 1005,
+      "date": "2026-09-02T13:30:42.466Z",
+      "cashier": "Carlos Mendoza",
+      "cashierId": "usr_1",
+      "customer": "Público en General",
+      "paymentMethod": "Efectivo",
+      "terminalAuth": null,
+      "terminalTxn": null,
+      "items": [
+        {
+          "id": "prod_1",
+          "name": "Café Espresso",
+          "quantity": 1,
+          "salePrice": 89
+        }
+      ],
+      "subtotal": 0,
+      "taxAmount": 0,
+      "discount": 0,
+      "total": 89,
+      "amountPaid": 89,
+      "changeReturned": 0,
+      "status": "COMPLETED"
+    },
+    {
+      "id": "TKT-1004",
+      "ticketNumber": 1004,
+      "date": "2026-09-01T18:05:37.158Z",
+      "cashier": "Carlos Mendoza",
+      "cashierId": "usr_1",
+      "customer": "Público en General",
+      "paymentMethod": "Efectivo",
+      "items": [
+        {
+          "id": "prod_2",
+          "name": "Bebida Energética Nitro 473ml",
+          "sku": "BEB-002",
+          "price": 38.5,
+          "costPrice": 18,
+          "quantity": 1,
+          "subtotal": 38.5,
+          "taxRate": 16
+        },
+        {
+          "id": "prod_1",
+          "name": "Café Espresso Premium 250g",
+          "sku": "BEB-001",
+          "price": 89,
+          "costPrice": 48.5,
+          "quantity": 1,
+          "subtotal": 89,
+          "taxRate": 16
+        }
+      ],
+      "subtotal": 109.91379310344827,
+      "taxAmount": 17.586206896551726,
+      "discount": 0,
+      "total": 127.5,
+      "amountPaid": 200,
+      "changeReturned": 72.5,
+      "status": "COMPLETED"
+    },
+    {
+      "id": "TKT-1001",
+      "ticketNumber": 1001,
+      "date": "2026-09-01T14:00:56.983Z",
+      "cashier": "Carlos Mendoza",
+      "cashierId": "usr_1",
+      "customer": "Público en General",
+      "paymentMethod": "Efectivo",
+      "items": [
+        {
+          "id": "prod_1",
+          "name": "Café Espresso Premium 250g",
+          "price": 89,
+          "costPrice": 48.5,
+          "quantity": 1,
+          "subtotal": 89,
+          "taxRate": 16
+        },
+        {
+          "id": "prod_3",
+          "name": "Croissant Mantequilla Francés",
+          "price": 32,
+          "costPrice": 14.2,
+          "quantity": 2,
+          "subtotal": 64,
+          "taxRate": 16
+        }
+      ],
+      "subtotal": 131.9,
+      "taxAmount": 21.1,
+      "discount": 0,
+      "total": 153,
+      "amountPaid": 200,
+      "changeReturned": 47,
+      "status": "COMPLETED"
+    },
+    {
+      "id": "TKT-1002",
+      "ticketNumber": 1002,
+      "date": "2026-09-01T15:30:56.984Z",
+      "cashier": "Carlos Mendoza",
+      "cashierId": "usr_1",
+      "customer": "Grupo Inmobiliario Nexus",
+      "paymentMethod": "Terminal / Tarjeta",
+      "items": [
+        {
+          "id": "prod_6",
+          "name": "Cable USB-C Carga Rápida 2m",
+          "price": 149,
+          "costPrice": 65,
+          "quantity": 2,
+          "subtotal": 298,
+          "taxRate": 16
+        },
+        {
+          "id": "prod_5",
+          "name": "Chips Artesanales Sal de Mar 180g",
+          "price": 45,
+          "costPrice": 22.5,
+          "quantity": 1,
+          "subtotal": 45,
+          "taxRate": 16
+        }
+      ],
+      "subtotal": 295.69,
+      "taxAmount": 47.31,
+      "discount": 0,
+      "total": 343,
+      "amountPaid": 343,
+      "changeReturned": 0,
+      "status": "COMPLETED"
+    },
+    {
+      "id": "TKT-1003",
+      "ticketNumber": 1003,
+      "date": "2026-09-01T17:00:56.984Z",
+      "cashier": "Valeria Ríos",
+      "cashierId": "usr_2",
+      "customer": "Público en General",
+      "paymentMethod": "Transferencia SPEI",
+      "items": [
+        {
+          "id": "prod_7",
+          "name": "Manzana Honeycrisp Selección",
+          "price": 59.9,
+          "costPrice": 32,
+          "quantity": 1.5,
+          "subtotal": 89.85,
+          "taxRate": 0
+        },
+        {
+          "id": "prod_9",
+          "name": "Agua Mineral Alcalina 1.5L",
+          "price": 22,
+          "costPrice": 9.8,
+          "quantity": 2,
+          "subtotal": 44,
+          "taxRate": 16
+        }
+      ],
+      "subtotal": 127.78,
+      "taxAmount": 6.07,
+      "discount": 0,
+      "total": 133.85,
+      "amountPaid": 133.85,
+      "changeReturned": 0,
+      "status": "COMPLETED"
+    }
+  ],
+  "products": [
+    {
+      "id": "prod_1",
+      "barcode": "75010001",
+      "sku": "BEB-001",
+      "name": "Café Espresso Premium 250g",
+      "category": "Bebidas & Café",
+      "costPrice": 48.5,
+      "salePrice": 89,
+      "taxRate": 16,
+      "stock": 33,
+      "minStock": 10,
+      "unit": "Pza",
+      "icon": "bi-cup-hot"
+    },
+    {
+      "id": "prod_2",
+      "barcode": "75010002",
+      "sku": "BEB-002",
+      "name": "Bebida Energética Nitro 473ml",
+      "category": "Bebidas & Café",
+      "costPrice": 18,
+      "salePrice": 38.5,
+      "taxRate": 16,
+      "stock": 5,
+      "minStock": 15,
+      "unit": "Pza",
+      "icon": "bi-lightning-charge"
+    },
+    {
+      "id": "prod_3",
+      "barcode": "75010003",
+      "sku": "PAN-001",
+      "name": "Croissant Mantequilla Francés",
+      "category": "Panadería & Repostería",
+      "costPrice": 14.2,
+      "salePrice": 32,
+      "taxRate": 16,
+      "stock": 28,
+      "minStock": 8,
+      "unit": "Pza",
+      "icon": "bi-egg-fried"
+    },
+    {
+      "id": "prod_4",
+      "barcode": "75010004",
+      "sku": "LACT-001",
+      "name": "Leche Orgánica Entera 1L",
+      "category": "Lácteos & Huevos",
+      "costPrice": 21,
+      "salePrice": 34.5,
+      "taxRate": 0,
+      "stock": 35,
+      "minStock": 12,
+      "unit": "Pza",
+      "icon": "bi-droplet-half"
+    },
+    {
+      "id": "prod_5",
+      "barcode": "75010005",
+      "sku": "SNK-001",
+      "name": "Chips Artesanales Sal de Mar 180g",
+      "category": "Snacks & Dulces",
+      "costPrice": 22.5,
+      "salePrice": 45,
+      "taxRate": 16,
+      "stock": 18,
+      "minStock": 10,
+      "unit": "Pza",
+      "icon": "bi-bag-check"
+    },
+    {
+      "id": "prod_6",
+      "barcode": "75010006",
+      "sku": "TEC-001",
+      "name": "Cable USB-C Carga Rápida 2m",
+      "category": "Tecnología & Accesorios",
+      "costPrice": 65,
+      "salePrice": 149,
+      "taxRate": 16,
+      "stock": 4,
+      "minStock": 8,
+      "unit": "Pza",
+      "icon": "bi-usb-c"
+    },
+    {
+      "id": "prod_7",
+      "barcode": "75010007",
+      "sku": "FRU-001",
+      "name": "Manzana Honeycrisp Selección",
+      "category": "Frutas & Verduras",
+      "costPrice": 32,
+      "salePrice": 59.9,
+      "taxRate": 0,
+      "stock": 52,
+      "minStock": 15,
+      "unit": "Kg",
+      "icon": "bi-apple"
+    },
+    {
+      "id": "prod_8",
+      "barcode": "75010008",
+      "sku": "HIG-001",
+      "name": "Jabón Líquido Antibacterial 500ml",
+      "category": "Cuidado Personal",
+      "costPrice": 24,
+      "salePrice": 52,
+      "taxRate": 16,
+      "stock": 3,
+      "minStock": 12,
+      "unit": "Pza",
+      "icon": "bi-shield-check"
+    },
+    {
+      "id": "prod_9",
+      "barcode": "75010009",
+      "sku": "BEB-003",
+      "name": "Agua Mineral Alcalina 1.5L",
+      "category": "Bebidas & Café",
+      "costPrice": 9.8,
+      "salePrice": 22,
+      "taxRate": 16,
+      "stock": 64,
+      "minStock": 20,
+      "unit": "Pza",
+      "icon": "bi-water"
+    },
+    {
+      "id": "prod_10",
+      "barcode": "75010010",
+      "sku": "PAN-002",
+      "name": "Baguette Rústica de Masa Madre",
+      "category": "Panadería & Repostería",
+      "costPrice": 16,
+      "salePrice": 35,
+      "taxRate": 16,
+      "stock": 22,
+      "minStock": 10,
+      "unit": "Pza",
+      "icon": "bi-bread-slice"
+    }
+  ],
+  "users": [
+    {
+      "id": "usr_3",
+      "name": "Alejandro Mora",
+      "username": "cajero2",
+      "role": "Administrador",
+      "pin": "1234",
+      "active": true,
+      "avatar": "AM"
+    }
+  ],
+  "settings": {
+    "storeName": "Aura SuperMart Enterprise Pro",
+    "businessName": "Aura Retail Systems S.A. de C.V.",
+    "taxId": "AUR240815XYZ",
+    "address": "Av. Tecnológico #1050, Corporativo Aura, CDMX",
+    "phone": "+52 (55) 8432-9000",
+    "email": "contacto@aurapos.enterprise.io",
+    "currency": "MXN",
+    "currencySymbol": "$",
+    "taxRate": 16,
+    "taxInclusive": false,
+    "ticketHeader": "¡BIENVENIDO A AURA SUPERMART!",
+    "ticketFooter": "¡Gracias por su compra! Conserve este ticket para cualquier cambio o aclaración dentro de 15 días.",
+    "showTaxBreakdown": true,
+    "ticketPaperWidth": "80mm",
+    "storageMode": "hybrid",
+    "autoPrint": false,
+    "storageDestination": "dropbox",
+    "gdriveAccount": "director@empresa.com",
+    "dropboxAccount": "",
+    "theme": "dark",
+    "gdriveConnected": true,
+    "dropboxConnected": false,
+    "enableMetrics": true,
+    "reportFrequency": "mensual",
+    "author": "ISC Héctor Raúl Antonio Aranda Barroso",
+    "company": "Merasystems",
+    "licenseKey": "DEMO",
+    "licenseStatus": "DEMO_MODE",
+    "licensedTo": "Merasystems Corp",
+    "updatedBy": "ISC Héctor Raúl Aranda",
+    "machineId": "MERA-MID-D393-62C5-6313-86ED",
+    "installedAt": "2026-09-02T13:30:16.960Z",
+    "trialExpiresAt": "2026-09-01T20:41:34.267Z",
+    "trialDaysTotal": 7
+  }
+}

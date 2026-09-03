@@ -1,0 +1,196 @@
+// Esquema de base de datos - Sistema POS
+// Cambia "provider" a "mysql" si usas MySQL (DATABASE_URL debe coincidir)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql" // o "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  MANAGER
+  CASHIER
+}
+
+enum SaleStatus {
+  COMPLETED
+  CANCELLED
+  REFUNDED
+}
+
+enum MovementType {
+  IN // entrada de stock (compra, ajuste positivo)
+  OUT // salida de stock (venta, ajuste negativo)
+  ADJUSTMENT
+}
+
+enum CardPaymentType {
+  INTEGRATED // cobrado mediante terminal integrada al sistema (simulada)
+  MANUAL // terminal física independiente (Clip, Mercado Pago Smart, etc.)
+}
+
+model User {
+  id            Int      @id @default(autoincrement())
+  name          String
+  email         String   @unique
+  passwordHash  String   @map("password_hash")
+  role          Role     @default(CASHIER)
+  isActive      Boolean  @default(true) @map("is_active")
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+
+  sales         Sale[]
+
+  @@map("users")
+}
+
+model Category {
+  id          Int       @id @default(autoincrement())
+  name        String    @unique
+  description String?
+  isActive    Boolean   @default(true) @map("is_active")
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+
+  products    Product[]
+
+  @@map("categories")
+}
+
+model Product {
+  id           Int             @id @default(autoincrement())
+  sku          String          @unique
+  name         String
+  description  String?
+  price        Decimal         @db.Decimal(10, 2)
+  cost         Decimal         @db.Decimal(10, 2) @default(0)
+  categoryId   Int             @map("category_id")
+  isActive     Boolean         @default(true) @map("is_active")
+  createdAt    DateTime        @default(now()) @map("created_at")
+  updatedAt    DateTime        @updatedAt @map("updated_at")
+
+  category     Category        @relation(fields: [categoryId], references: [id])
+  inventory    Inventory?
+  saleDetails  SalesDetail[]
+
+  @@index([categoryId])
+  @@map("products")
+}
+
+// Registro de stock actual por producto (1 a 1) + historial de movimientos si se desea
+model Inventory {
+  id              Int      @id @default(autoincrement())
+  productId       Int      @unique @map("product_id")
+  quantity        Int      @default(0)
+  minStock        Int      @default(0) @map("min_stock")
+  lastMovementAt  DateTime @default(now()) @map("last_movement_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  product         Product  @relation(fields: [productId], references: [id])
+
+  @@map("inventory")
+}
+
+// Configuración del negocio. Se maneja como un registro único (singleton):
+// siempre se lee/escribe la fila con id = 1 (ver settings.service.ts).
+enum CloudProvider {
+  LOCAL
+  GOOGLE_DRIVE
+  DROPBOX
+}
+
+enum SyncFrequency {
+  DAILY
+  WEEKLY
+}
+
+model StoreSettings {
+  id                        Int      @id @default(1)
+  businessName              String   @default("Mi Tienda") @map("business_name")
+  taxId                     String   @default("") @map("tax_id") // RFC
+  address                   String   @default("")
+  phone                     String   @default("")
+  ticketMessage             String   @default("¡Gracias por su compra!") @map("ticket_message")
+  defaultBreakdownTax       Boolean  @default(false) @map("default_breakdown_tax")
+  integratedTerminalEnabled Boolean  @default(false) @map("integrated_terminal_enabled")
+  salesGoal                 Decimal  @db.Decimal(12, 2) @default(0) @map("sales_goal")
+  logoDataUrl               String?  @db.Text @map("logo_data_url")
+
+  // --- Respaldo en la nube ---
+  cloudProvider       CloudProvider  @default(LOCAL) @map("cloud_provider")
+  // Token de acceso personal (Dropbox) o token OAuth2 (Google Drive). NUNCA se
+  // regresa completo al frontend (ver settings.service.ts); se guarda tal cual
+  // llega, así que en producción esta columna debería cifrarse a nivel de BD
+  // o moverse a un secret manager — ver nota en settings.service.ts.
+  cloudAccessToken     String?        @db.Text @map("cloud_access_token")
+  cloudAccountLabel    String?        @map("cloud_account_label") // ej. correo de la cuenta conectada
+  cloudConnected       Boolean        @default(false) @map("cloud_connected")
+  cloudAutoSyncEnabled Boolean        @default(false) @map("cloud_auto_sync_enabled")
+  cloudSyncFrequency   SyncFrequency  @default(WEEKLY) @map("cloud_sync_frequency")
+  cloudLastSyncAt      DateTime?      @map("cloud_last_sync_at")
+  cloudLastSyncStatus  String?        @map("cloud_last_sync_status") // "success" | "error: <mensaje>"
+
+  updatedAt                 DateTime @updatedAt @map("updated_at")
+
+  @@map("store_settings")
+}
+
+model Customer {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String?  @unique
+  phone     String?
+  document  String?  @unique // RFC/DNI/NIT, opcional
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  sales     Sale[]
+
+  @@map("customers")
+}
+
+// Cabecera del ticket de venta
+model Sale {
+  id            Int           @id @default(autoincrement())
+  folio         String        @unique // número de ticket
+  userId        Int           @map("user_id") // cajero que registró la venta
+  customerId    Int?          @map("customer_id")
+  subtotal      Decimal       @db.Decimal(10, 2)
+  tax           Decimal       @db.Decimal(10, 2) @default(0)
+  total         Decimal       @db.Decimal(10, 2)
+  status        SaleStatus    @default(COMPLETED)
+  cancelled     Boolean       @default(false) // espejo booleano de status=CANCELLED, para filtros simples
+  paymentMethod String        @default("CASH") @map("payment_method")
+  cardReference   String?          @map("card_reference") // núm. de autorización/voucher de terminal
+  cardPaymentType CardPaymentType? @map("card_payment_type") // INTEGRATED | MANUAL (solo si paymentMethod = CARD)
+  createdAt     DateTime      @default(now()) @map("created_at")
+
+  user          User          @relation(fields: [userId], references: [id])
+  customer      Customer?     @relation(fields: [customerId], references: [id])
+  details       SalesDetail[]
+
+  @@index([userId])
+  @@index([customerId])
+  @@map("sales")
+}
+
+// Detalle de cada producto vendido dentro de un ticket
+model SalesDetail {
+  id         Int     @id @default(autoincrement())
+  saleId     Int     @map("sale_id")
+  productId  Int     @map("product_id")
+  quantity   Int
+  unitPrice  Decimal @db.Decimal(10, 2) @map("unit_price")
+  subtotal   Decimal @db.Decimal(10, 2)
+
+  sale       Sale    @relation(fields: [saleId], references: [id])
+  product    Product @relation(fields: [productId], references: [id])
+
+  @@index([saleId])
+  @@index([productId])
+  @@map("sales_details")
+}
