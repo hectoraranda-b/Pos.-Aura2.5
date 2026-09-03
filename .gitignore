@@ -1,0 +1,15 @@
+# Dependencias
+node_modules/
+
+# Archivos de entorno y credenciales
+.env
+
+# Carpetas de respaldos locales y sincronización de pruebas
+AuraPOS_Respaldo/
+CloudSync_DRIVE/
+CloudSync_DROPBOX/
+
+# Registros y bases de datos locales de desarrollo
+data/*.log
+*.db
+*.sqlite
